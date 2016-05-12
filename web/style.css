@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.title-class{
+	background-color: blue;
+	color: white;
+	padding: 5px;
+	margin: 2px;
+	font-size: xx-large;
+}
+
+a {
+	color: blue;
+	font-size: x-large;
+}
+
+code {
+	font-size: x-large;
+}
