@@ -11,9 +11,8 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		<style type="text/css">
 			form > p > a.SignUp{
-				margin-left: 80px;
-				margin-right: 80px;
-				font-size: small;	
+				font-size: medium;	
+				padding-left: 30px;
 			}
 		</style>
 	</head>
@@ -21,8 +20,8 @@
 	<body class="Sign">
 		<form class="SignInForm">
 			<p><img class="SignImg" src="head.png" alt="Image loading failure" /></p>
-			<p><input class="SignInput" type="text" placeholder="Username" name="username" /></p>
-			<p><input class="SignInput" type="text" placeholder="Password" name="password" /></p>
+			<p><input class="SignInput" type="text" placeholder="Username" name="username" required /></p>
+			<p><input class="SignInput" type="text" placeholder="Password" name="password" required /></p>
 			<p><input id="SignButton" type="submit" value="Sign In" /></p>
 			<p><a class="SignUp" href="signup.html">No Account? Sign Up.</a></p>
 		</form>
