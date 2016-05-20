@@ -18,30 +18,38 @@ form.SignInForm, form.SignUpForm{
 	background-color: white;
 	background-origin: content-box;
 	box-shadow: 5px 4px 10px 2px gray;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 45px;
+	padding-right: 45px;
 	padding-top: 15px;
 	padding-bottom: 25px;
 }
 
 img.SignImg{
-	padding-bottom: 10px;
-	margin-left: 25px;
-	margin-right: 25px;
+	width: 240px;
+	height: 160px;
+	margin-left: 30px;
+	margin-right: 30px;
 	margin-top: 10px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 input.SignInput{
-	width: 285px;
-	height: 30px;
-}
-
-a.SignUp{
-	font-size: small;	
+	width: 206px;
+	height: 40px;
+	margin-left: 30px;
+	margin-right: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-width: 2px;
+	border-style: inset;
+	border-color: blue;
+	border-radius: 15px 15px;
 }
 
 #SignButton{
-	width: 300px;
+	width: 240px;
 	height: 40px;
+	margin-left: 30px;
+	margin-right: 30px;
+	font-size: large;
 }
