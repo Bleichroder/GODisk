@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>GODisk-LogIn</title>
+		<title>GODisk-SignIn</title>
 		<meta name="author" content="JasonCLiu" />
 		<!--<base href="http://10.10.10.11:9001/" />-->
 		<meta name="description" content="A cloud disk" />
@@ -11,16 +11,13 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	</head>
 
-	<body>
-
-		<input type="image" src="head.png" name="head" />
-		<form>
-			<p><input type="text" placeholder="Username" name="username" /></p>
-			<p><input type="text" placeholder="Password" name="password" /></p>
-			<p>
-				<input type="submit" value="Sign In" />
-				<input type="button" value="Sign Up" formaction="signup.html" />
-			</p>
+	<body class="Sign">
+		<form class="SignInForm">
+			<p><img class="SignImg" src="head.png" alt="Image loading failure" /></p>
+			<p><input class="SignInput" type="text" placeholder="Username" name="username" /></p>
+			<p><input class="SignInput" type="text" placeholder="Password" name="password" /></p>
+			<p><input id="SignButton" type="submit" value="Sign In" /></p>
+			<p><a class="SignUp" href="signup.html">No Account? Sign Up.</a></p>
 		</form>
 	</body>
 

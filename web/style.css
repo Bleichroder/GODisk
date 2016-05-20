@@ -1,18 +1,47 @@
 @charset "UTF-8";
 
-.title-class{
-	background-color: blue;
-	color: white;
-	padding: 5px;
-	margin: 2px;
-	font-size: xx-large;
+html {
+
 }
 
-a {
-	color: blue;
-	font-size: x-large;
+body.Sign{
+	padding-top: 40px;
+	padding-left: 40%;
 }
 
-code {
-	font-size: x-large;
+form.SignInForm, form.SignUpForm{
+	width: 300px;
+	border-style: outset;
+	border-width: thick;
+	border-color: blue;
+	border-radius: 25px 25px;
+	background-color: white;
+	background-origin: content-box;
+	box-shadow: 5px 4px 10px 2px gray;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 15px;
+	padding-bottom: 25px;
+}
+
+img.SignImg{
+	padding-bottom: 10px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+input.SignInput{
+	width: 285px;
+	height: 30px;
+}
+
+a.SignUp{
+	font-size: small;	
+}
+
+#SignButton{
+	width: 300px;
+	height: 40px;
 }
