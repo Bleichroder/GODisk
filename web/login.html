@@ -10,9 +10,26 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		<style type="text/css">
+			form > p.SignUp{
+				direction: rtl;
+			}
 			form > p > a.SignUp{
-				font-size: medium;	
+				font-size: medium;
+				color: blue;	
 				padding-left: 30px;
+				padding-right: 30px;	
+				transition-property: color;
+				transition-duration: 200ms;
+				transition-timing-function: linear;	
+			}
+			form > p > a.SignUp:hover{
+				font-size: medium;
+				color: red;	
+				padding-left: 30px;
+				padding-right: 30px;
+				transition-property: color;
+				transition-duration: 200ms;
+				transition-timing-function: linear;			
 			}
 		</style>
 	</head>
@@ -23,7 +40,7 @@
 			<p><input class="SignInput" type="text" placeholder="Username" name="username" required /></p>
 			<p><input class="SignInput" type="text" placeholder="Password" name="password" required /></p>
 			<p><input id="SignButton" type="submit" value="Sign In" /></p>
-			<p><a class="SignUp" href="signup.html">No Account? Sign Up.</a></p>
+			<p class="SignUp"><a class="SignUp" href="signup.html">No Account? Sign Up</a></p>
 		</form>
 	</body>
 
