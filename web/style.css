@@ -122,6 +122,42 @@ body div.LayoutMain{
 	text-align: middle;	
 }
 
+.LayoutMain .main-toolbar .button em.icon{
+	display: inline-block;
+	vertical-align: middle;
+	height: 20px;
+	width: 16px;
+	margin-right: 4px;
+}
+
+.LayoutMain .main-toolbar .button em.upload{
+	background: url(upload.png) no-repeat;
+}
+
+.LayoutMain .main-toolbar .button em.download{
+	background: url(download.png) no-repeat;
+}
+
+.LayoutMain .main-toolbar .button em.folder{
+	background: url(folder.png) no-repeat;
+}
+
+.LayoutMain .main-toolbar .button em.delete{
+	background: url(delete.png) no-repeat;
+}
+
+.LayoutMain .main-toolbar .button em.rename{
+	background: url(rename.png) no-repeat;
+}
+
+.LayoutMain .main-toolbar .button em.copy{
+	background: url(copy.png) no-repeat;
+}
+
+.LayoutMain .main-toolbar .button em.move{
+	background: url(move.png) no-repeat;
+}
+
 .LayoutMain div.main-index{
 	padding-left: 20px;
 }
