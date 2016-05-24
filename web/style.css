@@ -75,23 +75,53 @@ input.SignInput{
 	}
 }
 
-th.IndexFirstCol{
-	text-align: left;
-	width: 30%;
-	background: blue;
-	color: white;
+body > div > div.LayoutMain{
+	left: 500px;
+	right: 0px;
+	top: 50px;
+	z-index: 1;
+	position: absolute;
 }
 
-th.IndexMidCol{
-	text-align: left;
-	width: 10%;
-	background: blue;
-	color: white;
+body > div > div > div.main-toolbar{
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #d2d2d2;
+	height: 49px;
+	padding-left: 20px;
 }
 
-th.IndexLastCol{
-	text-align: left;
-	width: 20%;
-	background: blue;
+body > div > div > div > a.button{
+	padding-top: 10px;
+	width: 100px;
+}
+
+body > div > div > div.main-index{
+	padding-left: 20px;
+	padding-top: 20px;
+}
+
+body > div > div.LayoutStatus{	
+	color: black;
+	left: 0px;
+	top: 50px;
+	bottom: 0px;
+	width: 500px;
+	box-shadow: 3px 0 5px #333;
+	z-index: 10;
+	position:  absolute;
+	padding-top: 20px;
+}
+
+body > div > div.LayoutBar{
 	color: white;
+	background-color: #252525;	
+	box-shadow: 0 0 5px #333;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	height: 50px;
+	z-index: 20;
+	position: absolute;
+	padding-left: 30px;
 }
