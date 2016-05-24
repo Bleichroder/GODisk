@@ -100,7 +100,7 @@ body div.LayoutMain{
 	height: 29px;
 	line-height: 29px;
 	margin: 0 5px;
-	background: url(button.png) no-repeat 0 -144px;
+	background: url(icon/button.png) no-repeat 0 -144px;
 	outline: 0;
 	padding-left: 15px;
 	display: inline-block;
@@ -116,7 +116,7 @@ body div.LayoutMain{
 	position: relative;
 	height: 29px;
 	line-height: 29px;
-	background: url(button.png) no-repeat right -144px;
+	background: url(icon/button.png) no-repeat right -144px;
 	padding-right: 15px;
 	display: inline-block;
 	text-align: middle;	
@@ -131,31 +131,31 @@ body div.LayoutMain{
 }
 
 .LayoutMain .main-toolbar .button em.upload{
-	background: url(upload.png) no-repeat;
+	background: url(icon/upload.png) no-repeat;
 }
 
 .LayoutMain .main-toolbar .button em.download{
-	background: url(download.png) no-repeat;
+	background: url(icon/download.png) no-repeat;
 }
 
 .LayoutMain .main-toolbar .button em.folder{
-	background: url(folder.png) no-repeat;
+	background: url(icon/folder.png) no-repeat;
 }
 
 .LayoutMain .main-toolbar .button em.delete{
-	background: url(delete.png) no-repeat;
+	background: url(icon/delete.png) no-repeat;
 }
 
 .LayoutMain .main-toolbar .button em.rename{
-	background: url(rename.png) no-repeat;
+	background: url(icon/rename.png) no-repeat;
 }
 
 .LayoutMain .main-toolbar .button em.copy{
-	background: url(copy.png) no-repeat;
+	background: url(icon/copy.png) no-repeat;
 }
 
 .LayoutMain .main-toolbar .button em.move{
-	background: url(move.png) no-repeat;
+	background: url(icon/move.png) no-repeat;
 }
 
 .LayoutMain div.main-index{
@@ -208,7 +208,7 @@ body div.LayoutMain{
 	height: 20px;
 	top: 10.5px;
 	left: 10px;
-	background: url(check-blank.png) no-repeat;
+	background: url(icon/check-blank.png) no-repeat;
 }
 
 body div.LayoutStatus{	
