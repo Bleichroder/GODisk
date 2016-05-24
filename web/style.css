@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
-html {
-
+ul, li, ol{
+	list-style-type: none;
+	list-style-image: none;
+	list-style-position: outside;
 }
 
 body.Sign{
@@ -75,7 +77,7 @@ input.SignInput{
 	}
 }
 
-body > div > div.LayoutMain{
+body div.LayoutMain{
 	left: 500px;
 	right: 0px;
 	top: 50px;
@@ -83,45 +85,183 @@ body > div > div.LayoutMain{
 	position: absolute;
 }
 
-body > div > div > div.main-toolbar{
+.LayoutMain div.main-toolbar{
 	background-color: #f7f7f7;
+	border-right: 1px solid #d2d2d2;
 	border-bottom: 1px solid #d2d2d2;
-	height: 49px;
+	height: 30px;
 	padding-left: 20px;
-}
-
-body > div > div > div > a.button{
 	padding-top: 10px;
-	width: 100px;
+	padding-bottom: 10px;
 }
 
-body > div > div > div.main-index{
+.LayoutMain .main-toolbar a.button{
+	position: relative;
+	height: 29px;
+	line-height: 29px;
+	margin: 0 5px;
+	background: url(button.png) no-repeat 0 -144px;
+	outline: 0;
+	padding-left: 15px;
+	display: inline-block;
+	vertical-align: middle;
+	white-space: nowrap;
+	font-size: 13px;
+	font-weight: 400;	
+	text-decoration: none;	
+}
+
+.LayoutMain .main-toolbar span.button{
+	right: -1px;
+	position: relative;
+	height: 29px;
+	line-height: 29px;
+	background: url(button.png) no-repeat right -144px;
+	padding-right: 15px;
+	display: inline-block;
+	text-align: middle;	
+}
+
+.LayoutMain div.main-index{
 	padding-left: 20px;
-	padding-top: 20px;
 }
 
-body > div > div.LayoutStatus{	
-	color: black;
+.LayoutMain .main-index div.index-header{
+	z-index: 2;
+	position: relative;
+	overflow: visible;	
+}
+
+.index-header ul{
+	height: 41px;
+	line-height: 41px;
+	background: #f7f7f7;
+	border-radius: 2px;
+	color: #888;
+	border: 1px solid #d2d2d2;
+	padding-left: 0;
+	overflow: hidden;
+}
+
+.index-header .index-col{
+	float: left;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+	text-indent: 10px;
+}
+
+.index-header .first-col{
+	border-left: 0;
+	text-indent: 0;
+}
+
+.index-header .last-col{
+	border-right: 0;
+}
+
+.index-header .check{
+	position: relative;
+	width: 40px;
+	height: 41px;
+	float: left;
+}
+
+.index-header .check .check-icon{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10.5px;
+	left: 10px;
+	background: url(check-blank.png) no-repeat;
+}
+
+body div.LayoutStatus{	
+	z-index: 10;
+	position: absolute;
 	left: 0px;
 	top: 50px;
 	bottom: 0px;
-	width: 500px;
+	width: 480px;
 	box-shadow: 3px 0 5px #333;
-	z-index: 10;
-	position:  absolute;
-	padding-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-body > div > div.LayoutBar{
-	color: white;
-	background-color: #252525;	
-	box-shadow: 0 0 5px #333;
+.LayoutStatus div.status-header{
+	z-index: 11;
+	position: relative;
+	overflow: visible;	
+}
+
+.status-header ul{
+	height: 41px;
+	line-height: 41px;
+	background: #f7f7f7;
+	border-radius: 2px;
+	color: #888;
+	border: 1px solid #d2d2d2;
+	padding-left: 0;
+	overflow: hidden;
+}
+
+.status-header .status-col{
+	float: left;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+	text-indent: 10px;
+}
+
+.status-header .first-col{
+	border-left: 0;
+}
+
+.status-header .last-col{
+	border-right: 0;
+}
+
+body div.LayoutBar{
+	z-index: 20;
+	position: absolute;
 	left: 0px;
 	right: 0px;
 	top: 0px;
 	width: 100%;
-	height: 50px;
-	z-index: 20;
+	height: 50px;	
+	background-color: #252525;	
+	box-shadow: 0 0 5px #333;
+}
+
+.LayoutBar img.Logo{
+	left: 30px;
+	width: 60px;
+	height: 40px;
+	padding-top: 5px;
 	position: absolute;
-	padding-left: 30px;
+	float: left;
+}
+
+.LayoutBar form{
+	left: 60%;
+	top: 10px;
+	height: 30px;
+	position: absolute;
+	float: left;
+}
+
+.LayoutBar input.search-query{
+	width: 160px;
+	height: 28px;
+	border: 0;
+	outline: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.LayoutBar input.search-button{
+	width: ;
+	height: 30px;
+	border: 0;
+	background: #ccc;
+	padding-left: 4px;
+	padding-right: 4px;
 }

@@ -9,18 +9,25 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		<style type="text/css">
-			img.Logo{
-				width: 60px;
-				height: 40px;
-			}
+			
 		</style>
 	</head>
 	
 	<body>
 		<div>
 			<div class="LayoutStatus">
-				<div>
-					
+				<div class="status-header">
+					<ul>
+						<li class="status-col first-col" style="width:240px;">
+							<span class="text">File Name</span>
+						</li>
+						<li class="status-col" style="width:140px;">
+							<span class="text">Progress</span>
+						</li>
+						<li class="status-col last-col" style="width:96px;">
+							<span class="text">Operation</span>
+						</li>
+					</ul>
 				</div>
 				<div>
 					
@@ -29,28 +36,43 @@
 			<div class="LayoutMain">
 				<div class="main-toolbar">
 					<a class="button" href="">
-						<span>New Folder</span>
+						<span class="button">Upload</span>
 					</a>
-					<input type="file" title="Upload File" />
+					<a class="button" href="">
+						<span class="button">New Folder</span>
+					</a>
 				</div>
 				<div class="main-toolbar">
-					<input type="button" value="Download" />
-					<input type="button" value="Rename" />
-					<input type="button" value="Delete" />
-					<input type="button" value="Copy To" />
-					<input type="button" value="Move To" />
+					<a class="button" href="">
+						<span class="button">Download</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">Rename</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">Delete</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">Copy To</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">Move To</span>
+					</a>
 				</div>
 				<div class="main-index">
-					<div>
+					<div class="index-header">
 						<ul>
-							<li>
-							
+							<li class="index-col first-col" style="width:60%;">
+								<div class="check">
+									<span class="check-icon"></span>
+								</div>
+								<span class="text">File Name</span>
 							</li>
-							<li>
-							
+							<li class="index-col" style="width:16%;">
+								<span class="text">Size</span>
 							</li>
-							<li>
-							
+							<li class="index-col last-col" style="width:23%;">
+								<span class="text">MTime</span>
 							</li>
 						</ul>
 					</div>
@@ -61,8 +83,10 @@
 			</div>
 			<div class="LayoutBar">
 				<img class="Logo" src="head.png" alt="Image loading failure" />
-				<input type="search" placeholder="Please Enter Keywords" />
-				<input type="submit" value="Search" />
+				<form>
+					<input type="text" class="search-query" placeholder="Please Enter Keywords" />
+					<input type="submit" class="search-button" value="Search" />
+				</form>
 			</div>
 		</div>	
 	</body>
