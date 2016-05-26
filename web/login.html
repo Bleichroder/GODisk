@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-
 	<head>
-		<title>GODisk-SignIn</title>
+		<title>GODisk-LogIn</title>
 		<meta name="author" content="JasonCLiu" />
 		<!--<base href="http://10.10.10.11:9001/" />-->
 		<meta name="description" content="A cloud disk" />
@@ -12,13 +11,14 @@
 	</head>
 
 	<body class="Sign">
-		<form class="SignInForm">
+		<div class="SignUp">
 			<p><img class="SignImg" src="icon/head.png" alt="Image loading failure" /></p>
-			<p><input class="SignInput" type="text" placeholder="Username" name="username" required /></p>
-			<p><input class="SignInput" type="text" placeholder="Password" name="password" required /></p>
-			<p><input id="SignButton" type="submit" value="Sign In" /></p>
-			<p class="SignUp"><a class="SignUp" href="signup.html">No Account? Sign Up</a></p>
-		</form>
+			<form>
+				<p><input class="SignInput" type="text" placeholder="Username" name="username" required /></p>
+				<p><input class="SignInput" type="text" placeholder="Password" name="password" required /></p>
+				<p><input id="SignButton" type="submit" value="Log In" /></p>
+			</form>
+			<p class="sign"><a class="sign" href="signup.html">No Account? Sign Up</a></p>
+		</div>		
 	</body>
-
 </html>

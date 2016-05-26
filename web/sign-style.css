@@ -5,7 +5,7 @@ body.Sign{
 	padding-left: 40%;
 }
 
-form.SignInForm, form.SignUpForm{
+body > div.SignUp{
 	width: 300px;
 	border-style: outset;
 	border-width: thick;
@@ -43,11 +43,11 @@ input.SignInput{
 }
 
 
-.SignInForm p.SignUp{
+p.sign{
 	direction: rtl;
 }
 
-.SignInForm a.SignUp{
+a.sign{
 	font-size: medium;
 	color: blue;	
 	padding-left: 30px;
@@ -57,7 +57,7 @@ input.SignInput{
 	transition-timing-function: linear;	
 }
 			
-.SignInForm a.SignUp:hover{
+a.sign:hover{
 	font-size: medium;
 	color: red;	
 	padding-left: 30px;
