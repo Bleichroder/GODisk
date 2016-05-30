@@ -7,6 +7,12 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="sign-style.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="icon/favicon.ico" />
+		<!--[if lt IE 9]>
+			<script src="jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+			<script src="jquery/jquery-2.2.4.min.js" type="text/javascript"></script>
+		<!--<![endif]-->
 	</head>
 
 	<body class="Sign">
@@ -19,7 +25,7 @@
 				<p><input class="SignInput" type="text" required placeholder="Authorization Code" name="authcode" /></p>
 				<p><input id="SignButton"  type="submit" value="Create An Account" /></p>				
 			</form>
-			<p class="sign"><a class="sign" href="login.html">I have an account! Sign in</a></p>
+			<p class="sign"><a class="sign" href="login.html">I have an account! Log in</a></p>
 		</div>		
 	</body>
 </html>
