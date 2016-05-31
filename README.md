@@ -1,2 +1,16 @@
 # GODisk
-现有Ubuntu下Openstack平台，组件包含Identify&amp;Swift。想要用Go实现后台服务程序，调用数据库或自行建立数据结构维护存储目录信息。客户端通过Web UP&amp;DOWNLOAD。
+
+## Contributing
+
+* If you are not a member yet, please consider joining as an contributor.
+* If you have questions or comments, please contact lcx061125@163.com 
+
+## Infrastructure
+
+* Openstack
+* golang-client: Openstack API client for golang.
+* golang
+* Javascript
+* jQuery
+* HTML/CSS
+* Bootstrap

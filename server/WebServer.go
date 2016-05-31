@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"net/http"
+	"os/exec"
 )
 
 const PCWebDir = "other/web_template"
@@ -21,7 +23,11 @@ func signUpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "%q\n", r)
+	cmd := exec.Command("ls", "-sail", "/home/jason/Documents")
+	var buffer bytes.Buffer
+	cmd.Stdout = &buffer
+	cmd.Run()
+	fmt.Fprintf(w, "%s\n", buffer.String())
 }
 
 func main() {
@@ -36,5 +42,5 @@ func main() {
 	//http.HandleFunc("/login/", logInHandler)
 	//http.HandleFunc("/signup/", signUpHandler)
 	http.HandleFunc("/index/", indexHandler)
-	log.Fatal(http.ListenAndServe(":9999", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
