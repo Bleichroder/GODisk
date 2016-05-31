@@ -16,7 +16,6 @@
 1. OS: Ubuntu 16.04 LTS X64
 
 2. Golang
-	
 	* Golang 
 		* Download: [http://golangtc.com/download](http://golangtc.com/download)
 		* Installation: 
@@ -31,7 +30,6 @@
 			* Windows:
 				1.  .etc
 		* Test: go version
-	
 	* Liteide
 		* Download: [http://golangtc.com/download/liteide](http://golangtc.com/download/liteide)
 		* Installation:
