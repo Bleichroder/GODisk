@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GODisk-Index</title>
+		<base href="http://192.168.3.114:9999/" />
+		<meta name="author" content="JasonCLiu" />
+		<meta name="description" content="A cloud disk" />
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/main-style.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="icon/favicon.ico" />
+		<!--[if lt IE 9]>
+			<script src="jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+			<script src="jquery/jquery-2.2.4.min.js" type="text/javascript"></script>
+		<!--<![endif]-->
+	</head>
+	
+	<body>
+		<div>
+			<div class="LayoutStatus">
+				<div class="status-header">
+					<ul>
+						<li class="status-col first-col" style="width:240px;">
+							<span class="text">File Name</span>
+						</li>
+						<li class="status-col" style="width:140px;">
+							<span class="text">Progress</span>
+						</li>
+						<li class="status-col last-col" style="width:96px;">
+							<span class="text">Operation</span>
+						</li>
+					</ul>
+				</div>
+				<div>
+					
+				</div>
+			</div>
+			<div class="LayoutMain">
+				<div class="main-toolbar">
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon upload"></em>
+							<span class="text" style="width:auto">Upload</span>
+						</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon folder"></em>
+							<span class="text" style="width:auto">New Folder</span>
+						</span>
+					</a>
+				</div>
+				<div class="main-toolbar">
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon download"></em>
+							<span class="text" style="width:auto">Download</span>
+						</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon delete"></em>
+							<span class="text" style="width:auto">Delete</span>
+						</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon rename"></em>
+							<span class="text" style="width:auto">Rename</span>
+						</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon copy"></em>
+							<span class="text" style="width:auto">Copy To</span>
+						</span>
+					</a>
+					<a class="button" href="">
+						<span class="button">
+							<em class="icon move"></em>
+							<span class="text" style="width:auto">Move To</span>
+						</span>
+					</a>
+				</div>
+				<div class="main-index">
+					<div class="index-header">
+						<ul>
+							<li class="index-col first-col" style="width:60%;">
+								<div class="check">
+									<span class="check-icon"></span>
+								</div>
+								<span class="text">File Name</span>
+							</li>
+							<li class="index-col" style="width:16%;">
+								<span class="text">Size</span>
+							</li>
+							<li class="index-col last-col" style="width:23%;">
+								<span class="text">MTime</span>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<input type="checkbox" /><a href="">.</a>
+						<video controls preload="auto" autoplay loop height="480" width="640" src="test-webm.webm"></video>
+						<video controls preload="auto" autoplay loop height="480" width="500" src="test-mp4.mp4"></video>
+					</div>					
+				</div>
+			</div>
+			<div class="LayoutBar">
+				<img class="Logo" src="icon/head.png" alt="Image loading failure" />
+				<form>
+					<input type="text" class="search-query" placeholder="Please Enter Keywords" />
+					<input type="submit" class="search-button" value="Search" />
+				</form>
+			</div>
+		</div>	
+	</body>
+</html>
