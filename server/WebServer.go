@@ -10,24 +10,56 @@ import (
 
 const PCWebDir = "other/web_template"
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-
-}
-
-func logInHandler(w http.ResponseWriter, r *http.Request) {
-
-}
-
-func signUpHandler(w http.ResponseWriter, r *http.Request) {
-
-}
-
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	cmd := exec.Command("ls", "-sail", "/home/jason/Documents")
 	var buffer bytes.Buffer
+
+	cmd := exec.Command("ls", "-l", "/home/jason/workspace/git/GODisk/other/web_template/")
 	cmd.Stdout = &buffer
 	cmd.Run()
-	fmt.Fprintf(w, "%s\n", buffer.String())
+	count := stringHandler(buffer.String(), w)
+	fmt.Fprintf(w, "Total %d \n", count)
+}
+
+func stringHandler(s string, w http.ResponseWriter) int {
+
+	var filetype string
+	var filecounter int
+
+	fmt.Println(s)
+	for index, content := range s {
+		if content == '\n' {
+			indexNextStart := index + 1
+			if indexNextStart < len(s) {
+				filecounter++
+				filename := stringSep(s[indexNextStart:])
+				if s[indexNextStart] == 'd' {
+					filetype = "folder"
+				} else {
+					filetype = "file"
+				}
+				fmt.Fprintf(w, "%s\t\t%s\n", filetype, filename)
+			}
+		}
+	}
+	return filecounter
+}
+
+func stringSep(s string) (name string) {
+	end := 0
+	for index, content := range s {
+		if content == '\n' {
+			end = index
+			break
+		}
+	}
+	for a := end; a > 0; a-- {
+		if s[a] == ' ' {
+			b := a + 1
+			name = s[b:end]
+			break
+		}
+	}
+	return name
 }
 
 func main() {

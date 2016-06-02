@@ -1,16 +1,19 @@
 # GODisk
 
+	A openstack based , golang implemented web server and storage server.
+
+
 ## Infrastructure
 
-* Openstack
-* golang-client: Openstack API client for golang.
-* golang(liteide)
-* mgo: MongoDB driver for the Go language
-* MongoDB
-* Javascript
-* jQuery
-* HTML/CSS
-* Bootstrap
+* Openstack: Version Undetermined
+* Openstack/golang-client: Version Undetermined
+* golang(liteide): latest
+* mgo: Version Undetermined
+* MongoDB: Version Undetermined
+* jQuery: 2.x latest
+* Bootstrap: 
+* HTML/CSS: HTML5/CSS3
+
 
 ## Development Environment
 
