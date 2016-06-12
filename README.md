@@ -8,6 +8,7 @@
 * Openstack: Version Undetermined
 * Openstack/golang-client: Version Undetermined
 * golang(liteide): latest
+* beego: latest
 * mgo: Version Undetermined
 * MongoDB: Version Undetermined
 * jQuery: 2.x latest
