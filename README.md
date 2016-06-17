@@ -5,13 +5,22 @@
 
 ## Infrastructure
 
+### IaaS:
 * Openstack: Version Undetermined
 * Openstack/golang-client: Version Undetermined
+
+### Language:
 * golang(liteide): latest
-* mgo: Version Undetermined
+
+### Database:
 * MongoDB: Version Undetermined
+* mgo: Version Undetermined
+* MySQL: Version Undetermined
+* go-sql-driver: Version Undetermined
+
+### Web:
 * jQuery: 3.x latest
-* Bootstrap: 
+* Bootstrap: 3.x latest
 * HTML/CSS: HTML5/CSS3
 
 
