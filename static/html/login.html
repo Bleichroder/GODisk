@@ -17,7 +17,7 @@
     <link href="css/jquery-ui-1.11.4.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- Mainly scripts -->
-	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jquery-ui-1.11.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -25,18 +25,21 @@
 
         $(document).ready(function() {
             $("#dialog").dialog({
+                resizable: false,
+                modal: true,
+                autoOpen: false,
                 position: {
                     my: "center center",
                     at: "center center",
                     of: "form"
-                },
-                modal: true
+                }
             });
         });
 
         $("form[class=m-t-login]").submit(function(event) {
             /* Act on the event */
             event.preventDefault();
+            $("#dialog").option("open");
             var target = event.target;
             var action = $(target).attr("action");
             $.post(action, $(target).serialize(), function(data, textStatus, xhr) {
@@ -70,23 +73,22 @@
                     <input type="password" class="form-control" name="login_password" placeholder="Password" required="">
                 </div>
 				
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <button id="login-submit" type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="register/">Create an account</a>
           
             </form>
-
-            <p class="text-muted text-center"><small>Do not have an account?</small></p>
-            <a class="btn btn-sm btn-white btn-block m-t-login" href="register/">Create an account</a>
             
             <p class="m-t"> <small>Base on Bootstrap 3 &copy; 2016</small> </p>
         </div>
     </div>
 
-    <div id="dialog" title="Account Information Error">
-        The account infomation is not right. Please check the account infomation you have input!
+    <div id="dialog" title="Account Error">
+        <p><em>oops!</em></p>
+        <p>Incorrect username or password!</p>
+        <p>Please check your input!</p>
     </div>
-    <script type="text/javascript">
-        
-    </script>
 	
 </body>
 
