@@ -5,7 +5,7 @@
 
 ## Infrastructure
 
-### IaaS:
+### Platform:
 * Openstack: Version Undetermined
 * Openstack/golang-client: Version Undetermined
 
