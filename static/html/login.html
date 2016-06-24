@@ -24,6 +24,7 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
+
             $("#dialog").dialog({
                 resizable: false,
                 modal: true,
@@ -34,21 +35,25 @@
                     of: "form"
                 }
             });
-        });
 
-        $("form[class=m-t-login]").submit(function(event) {
-            /* Act on the event */
-            event.preventDefault();
-            $("#dialog").option("open");
-            var target = event.target;
-            var action = $(target).attr("action");
-            $.post(action, $(target).serialize(), function(data, textStatus, xhr) {
-                /*optional stuff to do after success */
-
+            $("form[class=m-t-login]").submit(function(e) {
+                /* Act on the event */
+                e.preventDefault();
+                var target = e.target;
+                var action = $(target).attr("action");
+                $.post(action, $(target).serialize(), function(ret) {
+                    /*optional stuff to do after success */
+                    if (ret.Ret == "0"){
+                        $("#dialog").dialog("open");
+                    }
+                    else {
+                        location.href = $(target).attr("form-redirect");
+                    }
+                }, "json");
             });
         });
 
-    </script>
+   </script>
 
 </head>
 
@@ -63,7 +68,7 @@
             <h3>Welcome to GODisk</h3>
             <p>Please enter your username and password to login.</p>
             
-            <form class="m-t-login" role="form" action="login/submit">
+            <form class="m-t-login" role="form" action="login/submit" form-redirect="index/">
 			
                 <div class="form-group">
                     <input type="text" class="form-control" name="login_username" placeholder="UserName" required="">
