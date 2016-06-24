@@ -11,7 +11,8 @@ import (
  Index path router
 **********************************************************************************/
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("indexHandler")
+	log.Print("Index request:")
+	log.Println(r)
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -43,7 +44,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 
-	log.Println("registerHandler")
+	log.Print("Registry request:")
+	log.Println(r)
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -78,7 +80,8 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func LogInHandler(w http.ResponseWriter, r *http.Request) {
 
-	log.Println("loginHandler")
+	log.Print("Login Registry:")
+	log.Println(r)
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 

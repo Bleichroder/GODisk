@@ -54,7 +54,7 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 	register_confirm := r.FormValue("register_confirm")
 	register_authcode := r.FormValue("register_authcode")
 
-	log.Println("User registry request: " + register_username + "@" + register_password + ":" + register_confirm + "-" + register_authcode)
+	log.Println("User registry request: {" + register_username + "}{" + register_password + "}{" + register_confirm + "}{" + register_authcode + "}")
 	if register_authcode != AUTHCODE {
 		registryResult = &Result{1, "Wrong authority code!"}
 	} else {
@@ -100,7 +100,7 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 
 	login_username := r.FormValue("login_username")
 	login_password := r.FormValue("login_password")
-	log.Println("User login request: " + login_username + "@" + login_password)
+	log.Println("User login request: {" + login_username + "}{" + login_password + "}")
 
 	if (login_username == "admin") && (login_password == "123") {
 		loginResult = &Result{0, "Login succeed!"}

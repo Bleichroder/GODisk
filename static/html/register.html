@@ -64,7 +64,7 @@
                             $("#reg-succeed").dialog("open");
                             setTimeout(function(){
                                 location.href = $(target).attr("form-redirect");
-                            }, 5000)                           
+                            }, 3000)                           
                         }
                         // Wrong authority code
                         else if (data.Ret == "1") {
@@ -129,7 +129,7 @@
     <!-- dialog -->
     <div id="reg-succeed" role="reminder" title="Error Reminder">
         <p><em>Registry Succeeded!</em></p>
-        <p>Goto the LOGIN page in 5 seconds. Please wait...</p>
+        <p>Goto the LOGIN page in 3 seconds. Please wait...</p>
     </div>
     <div id="un-exist" role="reminder" title="Error Reminder">
         <p><em>Username already exist!</em></p>
