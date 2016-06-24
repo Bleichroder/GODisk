@@ -23,13 +23,66 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="js/plugins/iCheck/icheck.min.js"></script>
-    <script type="text/javascript">        
+    
+    <!-- Custom -->
+    <script type="text/javascript">
+
         $(document).ready(function(){
+
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
+
+            $("div[role=reminder]").dialog({
+                resizable: false,
+                modal: true,
+                autoOpen: false,
+                position: {
+                    my: "center center",
+                    at: "center center",
+                    of: "form"
+                }
+            });
+
+            $("form[class=m-t-register]").submit(function(event) {
+                /* Act on the event */
+                event.preventDefault();
+                var target = event.target;
+                var action = $(target).attr("action")
+
+                var reg_pw = $("input[name=register_password]").val();
+                var reg_pwconf = $("input[name=register_confirm]").val();
+                
+                if (reg_pw == reg_pwconf) {
+                    console.log("Sending registry request!");
+                    $.post(action, $(target).serialize(), function(data) {
+                        /*optional stuff to do after success */
+                        console.log(data.Log);
+                        // Succeed
+                        if (data.Ret == "0"){
+                            $("#reg-succeed").dialog("open");
+                            setTimeout(function(){
+                                location.href = $(target).attr("form-redirect");
+                            }, 5000)                           
+                        }
+                        // Wrong authority code
+                        else if (data.Ret == "1") {
+                            $("#ac-not-match").dialog("open");
+                        }
+                        // Username exist
+                        else if (data.Ret == "2") {
+                            $("#un-exist").dialog("open");
+                        }
+                    }, "json");
+                }
+                else{
+                    console.log("Password does not match!");
+                    $("#pw-not-match").dialog("open");
+                }
+            });
         });
+
     </script>
 
 </head>
@@ -39,25 +92,25 @@
     <div class="middle-box text-center loginscreen   animated fadeInDown">
         <div>
             <div>
-
                 <h1 class="logo-name">GODisk</h1>
-
             </div>
+
             <h3>Register to GODisk</h3>
             <p>Create account for free.</p>
 
-            <form class="m-t-register" role="form" action="register/submit">
+            <form class="m-t-register" role="form" action="register/submit" form-redirect="login/index">
+                
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="UserName" required="">
+                    <input type="text" class="form-control" name="register_username" placeholder="UserName" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <input type="password" class="form-control" name="register_password" placeholder="Password" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password Confirmation" required="">
+                    <input type="password" class="form-control" name="register_confirm" placeholder="Password Confirmation" required="">
                 </div>
                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Auth Code" required="">
+                    <input type="text" class="form-control" name="register_authcode" placeholder="Authority Code" required="">
                 </div>
                 <div class="form-group">
                     <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
@@ -71,6 +124,25 @@
 
             <p class="m-t"> <small>Base on Bootstrap 3 &copy; 2016</small> </p>
         </div>
+    </div>
+
+    <!-- dialog -->
+    <div id="reg-succeed" role="reminder" title="Error Reminder">
+        <p><em>Registry Succeeded!</em></p>
+        <p>Goto the LOGIN page in 5 seconds. Please wait...</p>
+    </div>
+    <div id="un-exist" role="reminder" title="Error Reminder">
+        <p><em>Username already exist!</em></p>
+        <p>Please choose another USERNAME for your registry.</p>
+    </div>
+    <div id="pw-not-match" role="reminder" title="Error Reminder">
+        <p><em>Password error!</em></p>
+        <p>The PASSWORD CONFIRMATION does not match with the PASSWORD.</p>
+        <p>Please check you input.</p>
+    </div>
+    <div id="ac-not-match" role="reminder" title="Error Reminder">
+        <p><em>Authority failure!</em></p>
+        <p>Please check the AUTHORITY CODE you have input.</p>        
     </div>
 
 </body>

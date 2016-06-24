@@ -19,10 +19,14 @@
 * go-sql-driver: Version Undetermined
 
 ### Web:
-* jQuery: 3.x latest
-* Bootstrap: 3.x latest
+* jQuery: 2.2.4
+* Bootstrap: 3.3.6
 * HTML/CSS: HTML5/CSS3
 
+## Contributing
+
+* If you are not a member yet, please consider joining as a contributor.
+* If you have questions or comments, please contact lcx061125@163.com 
 
 ## Development Environment
 
@@ -66,8 +70,3 @@
 				* Bracket Highlighter
 				* Markdown Preview
 
-
-## Contributing
-
-* If you are not a member yet, please consider joining as a contributor.
-* If you have questions or comments, please contact lcx061125@163.com 

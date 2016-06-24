@@ -36,18 +36,21 @@
                 }
             });
 
-            $("form[class=m-t-login]").submit(function(e) {
+            $("form[class=m-t-login]").submit(function(event) {
                 /* Act on the event */
-                e.preventDefault();
-                var target = e.target;
+                event.preventDefault();
+                var target = event.target;
                 var action = $(target).attr("action");
-                $.post(action, $(target).serialize(), function(ret) {
+                $.post(action, $(target).serialize(), function(data) {
                     /*optional stuff to do after success */
-                    if (ret.Ret == "0"){
-                        $("#dialog").dialog("open");
-                    }
-                    else {
+                    console.log(data.Log);
+                    // Succeed
+                    if (data.Ret == "0"){                        
                         location.href = $(target).attr("form-redirect");
+                    }
+                    // Wrong account
+                    else {
+                        $("#dialog").dialog("open");
                     }
                 }, "json");
             });
@@ -89,7 +92,8 @@
         </div>
     </div>
 
-    <div id="dialog" title="Account Error">
+    <!-- dialog -->
+    <div id="dialog" title="Error Reminder">
         <p><em>oops!</em></p>
         <p>Incorrect username or password!</p>
         <p>Please check your input!</p>
