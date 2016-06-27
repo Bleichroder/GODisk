@@ -15,7 +15,7 @@
 ### Database:
 * MongoDB: Version Undetermined
 * mgo: Version Undetermined
-* MySQL: Version Undetermined
+* MariaDB: Version Undetermined
 * go-sql-driver: Version Undetermined
 
 ### Web:

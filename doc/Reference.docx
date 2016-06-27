@@ -1,21 +1,25 @@
 ﻿
 [Literature]
 
-1. HTML/CSS:
+HTML/CSS:
 1. <The Definitive Guide to HTML5>
 
-2. Javascript:
+Javascript:
 1. <Pro jQuery 2.0 2nd Edition>
-2. <Javascript The Definitive Guide 6th Edition>
 
-3. Golang:
+Golang:
 1. <The Go Programming Language>
 
-4. Openstack:
+Openstack:
 1. <openstack设计与实现>
 
-5. MongoDB:
+MongoDB:
 1. <MongoDB The Definitive Guide 2nd Edition>
+
+MariaDB:
+1. <MariaDB crash course>
+
+
 
 
 [Link]
@@ -23,4 +27,3 @@
 1. Golang中国社区: http://golangtc.com/
 2. Gopm: https://gopm.io/
 3. <The Go Programming Language> 中文版: https://www.9696e.com/doc/gopl-zh/index.html
-4. 
