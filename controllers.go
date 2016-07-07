@@ -49,18 +49,27 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 
 	var registryResult *Result
 
+	// Parameter Transformation
 	register_username := r.FormValue("register_username")
 	register_password := r.FormValue("register_password")
 	register_confirm := r.FormValue("register_confirm")
 	register_authcode := r.FormValue("register_authcode")
-
 	log.Println("User registry request: {" + register_username + "}{" + register_password + "}{" + register_confirm + "}{" + register_authcode + "}")
+
+	// Authority code validation
 	if register_authcode != AUTHCODE {
 		registryResult = &Result{1, "Wrong authority code!"}
 	} else {
 		registryResult = &Result{0, "Registry succeeded!"}
 	}
 
+	// Database query
+
+	// User_information insertion
+
+	// Directory table creation
+
+	// Response
 	b, err := json.Marshal(registryResult)
 	if err != nil {
 		log.Println(err)
@@ -98,16 +107,19 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 
 	var loginResult *Result
 
+	// Parameter transformation
 	login_username := r.FormValue("login_username")
 	login_password := r.FormValue("login_password")
 	log.Println("User login request: {" + login_username + "}{" + login_password + "}")
 
+	// Database query
 	if (login_username == "admin") && (login_password == "123") {
 		loginResult = &Result{0, "Login succeed!"}
 	} else {
 		loginResult = &Result{1, "Login failed!"}
 	}
 
+	// Response
 	b, err := json.Marshal(loginResult)
 	if err != nil {
 		log.Println(err)

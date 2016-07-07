@@ -17,7 +17,7 @@
 * MongoDB: Version Undetermined
 * mgo: Version Undetermined
 * MariaDB server: 10.0.x
-* Driver for database/sql: go-sql-driver V1.2 stable
+* Driver for database/sql: go-sql-driver/mysql V1.2 stable
 
 ### Web:
 * jQuery: 2.2.4
