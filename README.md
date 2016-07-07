@@ -7,16 +7,17 @@
 
 ### Platform:
 * Openstack: Version Undetermined
-* Openstack/golang-client: Version Undetermined
+* Client: openstack/golang-client
 
 ### Language:
-* golang(liteide): latest
+* Golang: latest
+* IDE: liteide latest
 
 ### Database:
 * MongoDB: Version Undetermined
 * mgo: Version Undetermined
-* MariaDB: Version Undetermined
-* go-sql-driver: Version Undetermined
+* MariaDB server: 10.0.x
+* Driver for database/sql: go-sql-driver V1.2 stable
 
 ### Web:
 * jQuery: 2.2.4
