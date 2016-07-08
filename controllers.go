@@ -48,16 +48,17 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 	}
 
 	var registryResult *Result
+	var userInfo userRegistryInfo
 
 	// Parameter Transformation
-	register_username := r.FormValue("register_username")
-	register_password := r.FormValue("register_password")
-	register_confirm := r.FormValue("register_confirm")
-	register_authcode := r.FormValue("register_authcode")
-	log.Println("User registry request: {" + register_username + "}{" + register_password + "}{" + register_confirm + "}{" + register_authcode + "}")
+	userInfo.name = r.FormValue("register_username")
+	userInfo.password = r.FormValue("register_password")
+	userInfo.confirm = r.FormValue("register_confirm")
+	userInfo.authcode = r.FormValue("register_authcode")
+	log.Println("User registry request: {" + userInfo.name + "}{" + userInfo.password + "}{" + userInfo.confirm + "}{" + userInfo.authcode + "}")
 
 	// Authority code validation
-	if register_authcode != AUTHCODE {
+	if userInfo.authcode != AUTHCODE {
 		registryResult = &Result{1, "Wrong authority code!"}
 	} else {
 		registryResult = &Result{0, "Registry succeeded!"}
@@ -106,17 +107,24 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 	}
 
 	var loginResult *Result
+	var userInfo userLoginInfo
 
 	// Parameter transformation
-	login_username := r.FormValue("login_username")
-	login_password := r.FormValue("login_password")
-	log.Println("User login request: {" + login_username + "}{" + login_password + "}")
+	userInfo.name = r.FormValue("login_username")
+	userInfo.password = r.FormValue("login_password")
+	log.Println("User login request: {" + userInfo.name + "}{" + userInfo.password + "}")
+
+	// Open Server
+	MariaDB, err := dbInit()
+	if err != nil {
+		log.Println(err)
+	}
+	defer MariaDB.Close()
 
 	// Database query
-	if (login_username == "admin") && (login_password == "123") {
-		loginResult = &Result{0, "Login succeed!"}
-	} else {
-		loginResult = &Result{1, "Login failed!"}
+	if MariaDB.loginValidate(&userInfo) {
+		log.Println(userInfo.name + " login success.")
+		loginResult = &Result{0, "Login success."}
 	}
 
 	// Response
@@ -125,7 +133,7 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 		log.Println(err)
 		return
 	} else {
-		log.Println("Response message hava sent.")
+		log.Println("Response message of login handler hava sent.")
 		w.Write(b)
 	}
 }

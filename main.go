@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"log"
 	"net/http"
 
@@ -11,27 +10,6 @@ import (
 const PCWebDir = "static"
 
 func main() {
-
-	/******************************************************************************
-	 MariaDB Client
-	******************************************************************************/
-
-	// Open Server
-	mariadb, dbOpenErr := sql.Open("mysql", "jason:buck119br@/godisk")
-	if dbOpenErr != nil {
-		log.Println(dbOpenErr)
-	} else {
-		log.Println("Database-mysql successfully OPENED!")
-	}
-	defer mariadb.Close()
-
-	// Ping Server
-	pingErr := mariadb.Ping()
-	if pingErr != nil {
-		log.Println(pingErr)
-	} else {
-		log.Println("MariaDB successfully validated DSN data!")
-	}
 
 	/******************************************************************************
 	 Web Server
