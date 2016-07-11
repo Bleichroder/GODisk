@@ -123,9 +123,16 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 
 	// Database query
 	queryRet := loginValidate(GODiskDB, &userInfo)
-	if queryRet {
-		log.Println(userInfo.name + " login success.")
+	switch queryRet {
+	case 0:
 		loginResult = &Result{0, "Login success."}
+	case 1:
+		loginResult = &Result{1, "Username not exist."}
+	case 2:
+		loginResult = &Result{2, "Password not match."}
+	default:
+		log.Println("GODisk server inner error!")
+		loginResult = &Result{3, "Inner error."}
 	}
 
 	// Response

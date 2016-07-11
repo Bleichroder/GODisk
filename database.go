@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -52,22 +53,48 @@ type userLoginInfo struct {
 	password string
 }
 
-func loginValidate(db *sql.DB, user *userLoginInfo) bool {
+func loginValidate(db *sql.DB, user *userLoginInfo) int {
 
-	var queryRet string
-	query, err := db.Prepare("SELECT password FROM user_information WHERE username = ?")
+	// Username query
+	var unQueryRet int
+	query, err := db.Prepare("SELECT COUNT(*) FROM user_information WHERE username = ?")
 	if err != nil {
 		log.Println(err)
-		return false
+		return 3
 	}
-
-	err = query.QueryRow(user.name).Scan(&queryRet)
+	err = query.QueryRow(user.name).Scan(&unQueryRet)
 	if err != nil {
 		log.Println(err)
-		return false
+		return 3
 	}
-	log.Println("The password retrieved is {" + queryRet + "}")
-	return true
+	log.Println("The number of users with the name of {" + user.name + "} is " + fmt.Sprintf("%d", unQueryRet))
+	if unQueryRet == 0 {
+		log.Println(user.name + " does not exist.")
+		return 1
+	}
+
+	// Password query
+	var pwQueryRet string
+	query, err = db.Prepare("SELECT password FROM user_information WHERE username = ?")
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	err = query.QueryRow(user.name).Scan(&pwQueryRet)
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	log.Println("The password retrieved is {" + pwQueryRet + "}")
+
+	// Password comparision
+	if user.password != pwQueryRet {
+		log.Println(user.password + " does not match the query value.")
+		return 2
+	}
+
+	log.Println(user.name + " login success.")
+	return 0
 }
 
 /**********************************************************************************

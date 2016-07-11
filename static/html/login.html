@@ -26,7 +26,7 @@
 
         $(document).ready(function() {
 
-            $("#dialog").dialog({
+            $("div[role=reminder]").dialog({
                 resizable: false,
                 modal: true,
                 autoOpen: false,
@@ -47,11 +47,22 @@
                     console.log(data.Log);
                     // Succeed
                     if (data.Ret == "0"){                        
-                        location.href = $(target).attr("form-redirect");
+                        $("#login-succeed").dialog("open");
+                        setTimeout(function(){
+                            location.href = $(target).attr("form-redirect");
+                        }, 3000)  
                     }
-                    // Wrong account
-                    else {
-                        $("#dialog").dialog("open");
+                    // Wrong username
+                    else if (data.Ret == "1"){
+                        $("#un-not-exist").dialog("open");
+                    }
+                    // Wrong password
+                    else if (data.Ret == "2"){
+                        $("#pw-not-match").dialog("open");
+                    }
+                    // Inner error
+                    else if (data.Ret == "3"){
+                        $("#inner-error").dialog("open");
                     }
                 }, "json");
             });
@@ -94,12 +105,26 @@
     </div>
 
     <!-- dialog -->
-    <div id="dialog" title="Error Reminder">
-        <p><em>oops!</em></p>
-        <p>Incorrect username or password!</p>
+    <div id="login-succeed" role="reminder" title="Error Reminder">
+        <p><em>Login Succeeded!</em></p>
+        <p>Goto the INDEX page in 3 seconds. Please wait...</p>
+    </div>
+    <div id="un-not-exist" role="reminder" title="Error Reminder">
+        <p><em>Username Error!</em></p>
+        <p>The user you tried to login does not exit!</p>
+        <p>Please check your input or REGISTER an account!</p>
+    </div>
+	<div id="pw-not-match" role="reminder" title="Error Reminder">
+        <p><em>Password Error!</em></p>
+        <p>Wrong password!</p>
         <p>Please check your input!</p>
     </div>
-	
+    <div id="inner-error" role="reminder" title="Error Reminder">
+        <p><em>Inner Error!</em></p>
+        <p>OOPS!</p>
+        <p>There is something critical happens to the server!</p>
+    </div>
+
 </body>
 
 </html>
