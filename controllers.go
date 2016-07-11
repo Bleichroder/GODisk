@@ -18,6 +18,7 @@ func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request)
 		log.Println(err)
 	}
 	t.Execute(w, nil)
+	log.Println("Index HTML transmition complete!")
 }
 
 func (this *indexController) ErrorAction(w http.ResponseWriter, r *http.Request) {
@@ -39,9 +40,11 @@ func (this *registerController) IndexAction(w http.ResponseWriter, r *http.Reque
 		log.Println(err)
 	}
 	t.Execute(w, nil)
+	log.Println("Register HTML transmition complete!")
 }
 
 func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Request) {
+
 	type Result struct {
 		Ret int
 		Log string
@@ -57,18 +60,26 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 	userInfo.authcode = r.FormValue("register_authcode")
 	log.Println("User registry request: {" + userInfo.name + "}{" + userInfo.password + "}{" + userInfo.confirm + "}{" + userInfo.authcode + "}")
 
-	// Authority code validation
-	if userInfo.authcode != AUTHCODE {
-		registryResult = &Result{1, "Wrong authority code!"}
-	} else {
-		registryResult = &Result{0, "Registry succeeded!"}
+	// Open Database
+	GODiskDB, err := dbInit()
+	if err != nil {
+		log.Println(err)
 	}
+	defer GODiskDB.Close()
 
-	// Database query
-
-	// User_information insertion
-
-	// Directory table creation
+	// Register service
+	ret := registerService(GODiskDB, &userInfo)
+	switch ret {
+	case 0:
+		registryResult = &Result{0, "Registry success."}
+	case 1:
+		registryResult = &Result{1, "Wrong authority code."}
+	case 2:
+		registryResult = &Result{2, "Username already exists."}
+	default:
+		log.Println("GODisk server inner error!")
+		registryResult = &Result{3, "Inner Error."}
+	}
 
 	// Response
 	b, err := json.Marshal(registryResult)
@@ -120,10 +131,11 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		log.Println(err)
 	}
+	defer GODiskDB.Close()
 
-	// Database query
-	queryRet := loginValidate(GODiskDB, &userInfo)
-	switch queryRet {
+	// Login service
+	ret := loginService(GODiskDB, &userInfo)
+	switch ret {
 	case 0:
 		loginResult = &Result{0, "Login success."}
 	case 1:
@@ -159,4 +171,5 @@ func NotFoundAction(w http.ResponseWriter) {
 		log.Println(err)
 	}
 	t.Execute(w, nil)
+	log.Println("404 HTML transmition complete!")
 }

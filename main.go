@@ -11,7 +11,7 @@ const PCWebDir = "static"
 
 func init() {
 
-	// Open Database Server
+	// Open/Ping/Close Database Server Connection
 	GODiskDB, err := dbInit()
 	if err != nil {
 		log.Println(err)
@@ -20,6 +20,7 @@ func init() {
 	GODiskDB.SetMaxIdleConns(1000)
 
 	DBPing(GODiskDB)
+	GODiskDB.Close()
 }
 
 func main() {

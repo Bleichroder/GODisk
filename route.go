@@ -13,7 +13,6 @@ import (
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println()
-	log.Print("Index request:")
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -21,6 +20,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	if len(parts) > 1 {
 		action = strings.Title(parts[1]) + "Action"
 	}
+
+	log.Print("Index request: " + action)
 
 	index := &indexController{}
 	controller := reflect.ValueOf(index)
@@ -46,7 +47,6 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println()
-	log.Println("Registry request:")
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -54,6 +54,8 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	if len(parts) > 1 {
 		action = strings.Title(parts[1]) + "Action"
 	}
+
+	log.Println("Registry request: " + action)
 
 	register := &registerController{}
 	controller := reflect.ValueOf(register)
@@ -63,9 +65,9 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		switch action {
 		case "":
 			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "index":
+		case "indexAction":
 			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "submit":
+		case "submitAction":
 			method = controller.MethodByName(strings.Title("submit") + "Action")
 		default:
 			method = controller.MethodByName(strings.Title("error") + "Action")
@@ -82,7 +84,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 func LogInHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println()
-	log.Println("Login request:")
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -90,6 +91,8 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 	if len(parts) > 1 {
 		action = strings.Title(parts[1]) + "Action"
 	}
+
+	log.Println("Login request: " + action)
 
 	login := &loginController{}
 	controller := reflect.ValueOf(login)
@@ -119,6 +122,7 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.URL.Path == "/" {
 		http.Redirect(w, r, "/login/index", http.StatusFound)
+	} else {
+		NotFoundAction(w)
 	}
-	NotFoundAction(w)
 }
