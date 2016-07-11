@@ -65,7 +65,6 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 	if err != nil {
 		log.Println(err)
 	}
-	defer GODiskDB.Close()
 
 	// Register service
 	ret := registerService(GODiskDB, &userInfo)
@@ -131,7 +130,6 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		log.Println(err)
 	}
-	defer GODiskDB.Close()
 
 	// Login service
 	ret := loginService(GODiskDB, &userInfo)
