@@ -7,50 +7,40 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type MySQL struct {
-	db *sql.DB
-}
+var GODiskDB *sql.DB
 
-var MariaDB *MySQL
+// Database initialization. Creating an connection pool.
+func dbInit() (dbNew *sql.DB, err error) {
 
-// Database Initialization
-func dbInit() (dbNew *MySQL, err error) {
-
-	dbNew = new(MySQL)
-	dbNew.db, err = sql.Open("mysql", "jason:buck119br@/godisk")
+	dbNew, err = sql.Open("mysql", "jason:buck119br@/godisk")
 
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
 
-	log.Println("Database-mysql successfully OPENED!")
+	log.Println("Database MySQL connection pool creation succeeded!")
+	log.Println(dbNew)
 	return dbNew, nil
 }
 
 // Ping MariaDB
-func (db *MySQL) ping() {
+func DBPing(db *sql.DB) {
 
 	var err error
 
 	if db != nil {
-		err = db.db.Ping()
+		err = db.Ping()
+		if err != nil {
+			log.Println(err)
+			return
+		}
 	} else {
-		log.Println("Not available database pointer!")
+		log.Println("NIL connection pool pointer!")
 		return
 	}
 
-	if err != nil {
-		log.Println(err)
-	}
-
 	log.Println("MariaDB successfully validated DSN data!")
-}
-
-// Database close
-func (db *MySQL) Close() {
-	log.Println("Database-mysql will be closed!")
-	db.db.Close()
 }
 
 /**********************************************************************************
@@ -62,10 +52,10 @@ type userLoginInfo struct {
 	password string
 }
 
-func (db *MySQL) loginValidate(user *userLoginInfo) (result bool) {
+func loginValidate(db *sql.DB, user *userLoginInfo) bool {
 
 	var queryRet string
-	query, err := db.db.Prepare("SELECT password FROM user_information WHERE username = ?")
+	query, err := db.Prepare("SELECT password FROM user_information WHERE username = ?")
 	if err != nil {
 		log.Println(err)
 		return false
@@ -76,7 +66,7 @@ func (db *MySQL) loginValidate(user *userLoginInfo) (result bool) {
 		log.Println(err)
 		return false
 	}
-	log.Println("the password retrieved is " + queryRet)
+	log.Println("The password retrieved is {" + queryRet + "}")
 	return true
 }
 

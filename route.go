@@ -82,7 +82,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 func LogInHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println()
-	log.Println("Login Registry:")
+	log.Println("Login request:")
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 

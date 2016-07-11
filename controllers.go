@@ -97,6 +97,7 @@ func (this *loginController) IndexAction(w http.ResponseWriter, r *http.Request)
 		log.Println(err)
 	}
 	t.Execute(w, nil)
+	log.Println("Login HTML transmition complete!")
 }
 
 func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request) {
@@ -114,15 +115,15 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 	userInfo.password = r.FormValue("login_password")
 	log.Println("User login request: {" + userInfo.name + "}{" + userInfo.password + "}")
 
-	// Open Server
-	MariaDB, err := dbInit()
+	// Open Database
+	GODiskDB, err := dbInit()
 	if err != nil {
 		log.Println(err)
 	}
-	defer MariaDB.Close()
 
 	// Database query
-	if MariaDB.loginValidate(&userInfo) {
+	queryRet := loginValidate(GODiskDB, &userInfo)
+	if queryRet {
 		log.Println(userInfo.name + " login success.")
 		loginResult = &Result{0, "Login success."}
 	}
