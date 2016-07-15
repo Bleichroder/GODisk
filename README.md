@@ -13,6 +13,9 @@
 * Golang: latest
 * IDE: liteide latest
 
+### Framework:
+* Beego: will be used when refactor in the future
+
 ### Database:
 * MongoDB: Version Undetermined
 * mgo: Version Undetermined

@@ -56,12 +56,13 @@ func loginService(db *sql.DB, user *userLoginInfo) int {
 
 	// Username query
 	var unQueryRet int
-	query, err := db.Prepare("SELECT COUNT(*) FROM user_information WHERE username = ?")
+	unQuery, err := db.Prepare("SELECT COUNT(*) FROM user_information WHERE username = ?")
 	if err != nil {
 		log.Println(err)
 		return 3
 	}
-	err = query.QueryRow(user.name).Scan(&unQueryRet)
+	defer unQuery.Close()
+	err = unQuery.QueryRow(user.name).Scan(&unQueryRet)
 	if err != nil {
 		log.Println(err)
 		return 3
@@ -74,12 +75,13 @@ func loginService(db *sql.DB, user *userLoginInfo) int {
 
 	// Password query
 	var pwQueryRet string
-	query, err = db.Prepare("SELECT password FROM user_information WHERE username = ?")
+	pwQuery, err := db.Prepare("SELECT password FROM user_information WHERE username = ?")
 	if err != nil {
 		log.Println(err)
 		return 3
 	}
-	err = query.QueryRow(user.name).Scan(&pwQueryRet)
+	defer pwQuery.Close()
+	err = pwQuery.QueryRow(user.name).Scan(&pwQueryRet)
 	if err != nil {
 		log.Println(err)
 		return 3
@@ -110,48 +112,157 @@ type userRegistryInfo struct {
 
 func registerService(db *sql.DB, user *userRegistryInfo) int {
 
-	// Authority code query
-	var acRet string
-	query, err := db.Prepare("SELECT auth_code FROM system_status WHERE disk_name = ?")
-	if err != nil {
-		log.Println(err)
-		return 3
-	}
-	err = query.QueryRow("demo").Scan(&acRet)
-	if err != nil {
-		log.Println(err)
-		return 3
-	}
-	if user.authcode != acRet {
-		log.Println("The authcode {" + user.authcode + "} does not match with the query value.")
-		return 1
+	ret := authcodeQuery(db, user.authcode)
+	if ret != 0 {
+		return ret
 	}
 
-	// Username query
-	var unQueryRet int
-	query, err = db.Prepare("SELECT COUNT(*) FROM user_information WHERE username = ?")
-	if err != nil {
-		log.Println(err)
+	ret = usernameQuery(db, user.name)
+	if ret != 0 {
+		return ret
+	}
+
+	ret = userInfoInsert(db, user)
+	if ret != 0 {
+		return ret
+	}
+
+	if userTableCreate(db, user.name) != nil {
 		return 3
 	}
-	err = query.QueryRow(user.name).Scan(&unQueryRet)
-	if err != nil {
-		log.Println(err)
+
+	if systemStatusUpdate(db) != nil {
 		return 3
 	}
-	log.Println("The number of users with the name of {" + user.name + "} is " + fmt.Sprintf("%d", unQueryRet))
-	if unQueryRet != 0 {
-		log.Println("User {" + user.name + "} already exists.")
-		return 2
-	}
-
-	// Insert userRegistryInfo into user_information
-
-	// Create table user_user.name
-
-	// Update system_status
 
 	// Success
 	log.Println("User {" + user.name + "} registry success.")
 	return 0
+}
+
+// Authority code query
+func authcodeQuery(db *sql.DB, ac string) int {
+
+	var acRet string
+	acQuery, err := db.Prepare("SELECT auth_code FROM system_status WHERE disk_name = ?")
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	defer acQuery.Close()
+	err = acQuery.QueryRow("demo").Scan(&acRet)
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	if ac != acRet {
+		log.Println("The authcode {" + ac + "} does not match with the query value.")
+		return 1
+	}
+
+	log.Println("The authcode {" + ac + "} is right.")
+	return 0
+}
+
+// Username query
+func usernameQuery(db *sql.DB, username string) int {
+
+	var unQueryRet int
+	unQuery, err := db.Prepare("SELECT COUNT(*) FROM user_information WHERE username = ?")
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	defer unQuery.Close()
+	err = unQuery.QueryRow(username).Scan(&unQueryRet)
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	log.Println("The number of users with the name of {" + username + "} is " + fmt.Sprintf("%d", unQueryRet))
+	if unQueryRet != 0 {
+		log.Println("User {" + username + "} already exists.")
+		return 2
+	}
+
+	return 0
+}
+
+// Insert userRegistryInfo into user_information
+func userInfoInsert(db *sql.DB, user *userRegistryInfo) int {
+
+	userInsert, err := db.Prepare("INSERT INTO user_information (username, password, regtime) VALUE(?, ? , now())")
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	defer userInsert.Close()
+	_, err = userInsert.Exec(user.name, user.password)
+	if err != nil {
+		log.Println(err)
+		return 3
+	}
+	log.Println("User information has successfully insert into database.")
+	return 0
+}
+
+// Create table user_user.name
+func userTableCreate(db *sql.DB, username string) error {
+
+	var table_name string
+	table_name = "user_" + username
+	log.Println("Table {" + table_name + "} is creating...")
+
+	createTable, err := db.Prepare("CREATE TABLE " + table_name +
+		" (file_name TEXT(65535) NOT NULL," +
+		" type CHAR(20) NOT NULL," +
+		" size BIGINT NOT NULL," +
+		" modification_time DATETIME NOT NULL," +
+		" md5 CHAR(32) NOT NULL," +
+		" storage_id BIGINT NOT NULL," +
+		" PRIMARY KEY (md5)) ENGINE=Aria")
+
+	if err != nil {
+		log.Println(err)
+		delRes := userInfoDelete(db, username)
+		if delRes != nil {
+			log.Println(delRes)
+			return delRes
+		}
+		return err
+	}
+	defer createTable.Close()
+	_, err = createTable.Exec()
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	log.Println("Table {" + table_name + "} has successfully created.")
+	return nil
+}
+
+// User deletion from table user_information
+func userInfoDelete(db *sql.DB, user string) error {
+
+	deletion, err := db.Prepare("DELETE FROM user_information WHERE USERNAME = ?")
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	defer deletion.Close()
+	_, err = deletion.Exec(user)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	log.Println("User {" + user + "} has deleted from TABLE user_information.")
+	return nil
+}
+
+// Update global system statistical information
+func systemStatusUpdate(db *sql.DB) error {
+
+	log.Println("Global system information has been updated.")
+	return nil
 }

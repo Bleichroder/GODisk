@@ -21,7 +21,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		action = strings.Title(parts[1]) + "Action"
 	}
 
-	log.Print("Index request: " + action)
+	log.Println("Index request: " + action)
 
 	index := &indexController{}
 	controller := reflect.ValueOf(index)
@@ -32,7 +32,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		case "":
 			method = controller.MethodByName(strings.Title("index") + "Action")
 		default:
-			method = controller.MethodByName(strings.Title("error") + "Action")
+			NotFoundAction(w)
 		}
 	}
 
@@ -70,7 +70,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		case "submitAction":
 			method = controller.MethodByName(strings.Title("submit") + "Action")
 		default:
-			method = controller.MethodByName(strings.Title("error") + "Action")
+			NotFoundAction(w)
 		}
 	}
 	requestValue := reflect.ValueOf(r)
@@ -107,7 +107,7 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 		case "submitAction":
 			method = controller.MethodByName(strings.Title("submit") + "Action")
 		default:
-			method = controller.MethodByName(strings.Title("error") + "Action")
+			NotFoundAction(w)
 		}
 	}
 	requestValue := reflect.ValueOf(r)
@@ -120,9 +120,10 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 
+	log.Println("Not Found request: ")
 	if r.URL.Path == "/" {
 		http.Redirect(w, r, "/login/index", http.StatusFound)
-	} else {
-		NotFoundAction(w)
+		return
 	}
+	NotFoundAction(w)
 }

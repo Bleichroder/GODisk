@@ -21,10 +21,6 @@ func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request)
 	log.Println("Index HTML transmition complete!")
 }
 
-func (this *indexController) ErrorAction(w http.ResponseWriter, r *http.Request) {
-	NotFoundAction(w)
-}
-
 /**********************************************************************************
  Register path controller
 **********************************************************************************/
@@ -65,6 +61,7 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 	if err != nil {
 		log.Println(err)
 	}
+	defer GODiskDB.Close()
 
 	// Register service
 	ret := registerService(GODiskDB, &userInfo)
@@ -89,10 +86,6 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 		log.Println("Response message have sent.")
 		w.Write(b)
 	}
-}
-
-func (this *registerController) ErrorAction(w http.ResponseWriter, r *http.Request) {
-	NotFoundAction(w)
 }
 
 /**********************************************************************************
@@ -130,6 +123,7 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		log.Println(err)
 	}
+	defer GODiskDB.Close()
 
 	// Login service
 	ret := loginService(GODiskDB, &userInfo)
@@ -154,10 +148,6 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 		log.Println("Response message of login handler hava sent.")
 		w.Write(b)
 	}
-}
-
-func (this *loginController) ErrorAction(w http.ResponseWriter, r *http.Request) {
-	NotFoundAction(w)
 }
 
 /**********************************************************************************
