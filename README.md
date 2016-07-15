@@ -13,8 +13,11 @@
 * Golang: latest
 * IDE: liteide latest
 
-### Framework:
-* Beego: will be used when refactor in the future
+### Framework(choice):
+* Beego
+* revel
+* gin
+* echo
 
 ### Database:
 * MongoDB: Version Undetermined

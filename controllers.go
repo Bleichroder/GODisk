@@ -13,7 +13,7 @@ import (
 type indexController struct{}
 
 func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("static/html/500.html")
+	t, err := template.ParseFiles("static/html/index.html")
 	if err != nil {
 		log.Println(err)
 	}
@@ -24,8 +24,6 @@ func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request)
 /**********************************************************************************
  Register path controller
 **********************************************************************************/
-
-const AUTHCODE = "ppnn13%dkstfeb.1st"
 
 type registerController struct {
 }
