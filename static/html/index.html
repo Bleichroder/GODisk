@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GODisk | Dashboard</title>
+    <title>GODisk | Index</title>
 
     <base href="http://192.168.3.116:8080/" />
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Toastr style -->
@@ -20,8 +20,8 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
@@ -57,26 +57,24 @@
                             <span>
                                 <img alt="image" class="img-circle" src="img/gopher.jpeg" />
                             </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <a data-toggle="dropdown" class="dropdown-toggle">
                                 <span class="clear">
                                     <span class="block m-t-xs">
-                                        <strong class="font-bold">Jason C.Liu</strong>
+                                        <strong class="font-bold">Jason C.Liu<b class="caret"></b></strong>
                                     </span>
-                                    <span class="text-muted text-xs block">Art Director<b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="profile.html">Profile</a></li>
                                 <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
+                                <li><a href="login/index">Logout</a></li>
                             </ul>
                         </div>
-                        <div class="logo-element">GO</div>
+                        <div class="logo-element">GODisk</div>
                     </li>
                     <li class="active">
-                        <a href="index.html">
+                        <a href="index/">
                             <i class="fa fa-th-large"></i>
                             <span class="nav-label">Dashboards</span>
                             <span class="fa arrow"></span>
@@ -93,10 +91,11 @@
         </nav>
 
         <div id="page-wrapper" class="gray-bg dashbard-1">
+            <!--  -->
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="index.html">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " >
                             <i class="fa fa-bars"></i>
                         </a>
                         <form role="search" class="navbar-form-custom" action="search_results.html">
@@ -111,7 +110,7 @@
                         </li>
                         
                         <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="index">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown">
                                 <i class="fa fa-bell"></i>
                                 <span class="label label-primary">1</span>
                             </a>
@@ -138,7 +137,167 @@
                     </ul>
                 </nav>
             </div>
-                
+
+            
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>PATH</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index/">Home</a>
+                        </li>
+                        <li>
+                            <a>Level 1</a>
+                        </li>
+                        <li class="active">
+                            <strong>Level 2</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom:0px">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox-title">
+                            <h5>Function</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content" style="padding-bottom:15px">
+                            <button class="btn btn-success " type="button">
+                                <i class="fa fa-cloud-upload"></i>
+                                <span class="bold">Upload</span>
+                            </button>
+                            <button class="btn btn-primary " type="button">
+                                <i class="fa fa-cloud-download"></i>
+                                <span class="bold">Download</span> 
+                            </button>
+                            <button class="btn btn-primary " type="button">
+                                <i class="fa fa-folder-open-o"></i>
+                                <span class="bold">New Folder</span> 
+                            </button>
+                            <button class="btn btn-primary " type="button">
+                                <i class="fa fa-trash"></i>
+                                <span class="bold">Delete</span> 
+                            </button>
+                            <button class="btn btn-primary " type="button">
+                                <i class="fa fa-edit"></i>
+                                <span class="bold">Rename</span>
+                            </button>
+                            <button class="btn btn-primary " type="button">
+                                <i class="fa fa-copy"></i>
+                                <span class="bold">Copy To</span> 
+                            </button>
+                            <button class="btn btn-primary " type="button">
+                                <i class="fa fa-send-o"></i>
+                                <span class="bold">Move To</span> 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>File List</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li>
+                                            <a>Config option 1</a>
+                                        </li>
+                                        <li>
+                                            <a>Config option 2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-4 m-b-xs">
+                                        <div data-toggle="buttons" class="btn-group">
+                                            <label class="btn btn-sm btn-white">
+                                                <input type="radio" id="option1" name="options">
+                                                <i class="fa fa-sort-alpha-asc"></i>
+                                                <span class="bold" style="font-size:14px">Name</span> 
+                                            </label>
+                                            <label class="btn btn-sm btn-white active">
+                                                <input type="radio" id="option2" name="options">
+                                                <i class="fa fa-sort-amount-asc"></i>
+                                                <span class="bold" style="font-size:14px">Size</span>
+                                            </label>
+                                            <label class="btn btn-sm btn-white">
+                                                <input type="radio" id="option3" name="options">
+                                                <i class="fa fa-sort-numeric-asc"></i>
+                                                <span class="bold" style="font-size:14px">Time</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+
+                                                <th><input type="checkbox" class="i-checks" name="input[]"></th>
+                                                <th>File Name</th>
+                                                <th>Type</th>
+                                                <th>Size </th>
+                                                <th>Modification Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><a>Project</a></td>
+                                                <td><i class="fa fa-folder" style="font-size:15px"></i></td>
+                                                <td><span class="pie">1024</span></td>
+                                                <td>Jul 14, 2013</td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><a>Project</a></td>
+                                                <td><i class="fa fa-file-picture-o" style="font-size:15px"></i></td>
+                                                <td><span class="pie">2222</span></td>
+                                                <td>Jul 16, 2013</td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><a>Project</a></td>
+                                                <td><i class="fa fa-file-pdf-o" style="font-size:15px"></i></td>
+                                                <td><span class="pie">123</span></td>
+                                                <td>Jul 18, 2013</td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><a>Project</a></td>
+                                                <td><i class="fa fa-file-video-o" style="font-size:15px"></i></td>
+                                                <td><span class="pie">456</span></td>
+                                                <td>Jul 22, 2013</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
             
             <div class="footer" >
                 <div class="pull-right">
