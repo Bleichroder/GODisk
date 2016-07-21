@@ -14,7 +14,7 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="css/plugins/toastr/toastr.css" rel="stylesheet">
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -29,7 +29,7 @@
     <script src="js/inspinia.js"></script>
 
     <!-- Toastr -->
-    <script src="js/plugins/toastr/toastr.min.js"></script>
+    <script src="js/plugins/toastr/toastr.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -41,9 +41,31 @@
                     timeOut: 4000
                 };
                 toastr.success('Responsive Admin Theme', 'Welcome to GODisk');
-            }, 1300);         
-        });
+            }, 1300);    
+
+            $('#checkAll').prop('checked', false);
+
+            $("#checkAll").click(function() { 
+                var checkStatus = $('#checkAll').prop('checked');       
+                $('input[name=subBox]').prop("checked", checkStatus);        
+            });  
+
+            $("input[name=subBox]").click(function(){
+                $("#checkAll").prop("checked",$("input[name=subBox]").length == $("input[name=subBox]:checked").length ? true : false);
+            }); 
+        });       
     </script>
+
+    <style type="text/css">
+        [role=filetype] {
+            align-content: center;
+            font-size: 20px;
+        }
+
+        td > i {
+            margin-left: 6px;
+        }
+    </style>
 
 </head>
 
@@ -253,40 +275,41 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-
-                                                <th><input type="checkbox" class="i-checks" name="input[]"></th>
+                                                <th style="width:60px">
+                                                    <input type="checkbox" class="i-checks" id="checkAll" >
+                                                </th>
+                                                <th style="width:70px">Type</th>
                                                 <th>File Name</th>
-                                                <th>Type</th>
-                                                <th>Size </th>
-                                                <th>Modification Date</th>
+                                                <th style="width:10%">Size </th>
+                                                <th style="width:15%">Modification Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
+                                                <td role="filetype"><i class="fa fa-folder"></i></td>
                                                 <td><a>Project</a></td>
-                                                <td><i class="fa fa-folder" style="font-size:15px"></i></td>
                                                 <td><span class="pie">1024</span></td>
-                                                <td>Jul 14, 2013</td>
+                                                <td>2016-07-21 14:00</td>
                                             </tr>
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
+                                                <td role="filetype"><i class="fa fa-file-picture-o"></i></td>
                                                 <td><a>Project</a></td>
-                                                <td><i class="fa fa-file-picture-o" style="font-size:15px"></i></td>
                                                 <td><span class="pie">2222</span></td>
                                                 <td>Jul 16, 2013</td>
                                             </tr>
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
+                                                <td role="filetype"><i class="fa fa-file-pdf-o"></i></td>
                                                 <td><a>Project</a></td>
-                                                <td><i class="fa fa-file-pdf-o" style="font-size:15px"></i></td>
                                                 <td><span class="pie">123</span></td>
                                                 <td>Jul 18, 2013</td>
                                             </tr>
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
+                                                <td role="filetype"><i class="fa fa-file-video-o"></i></td>
                                                 <td><a>Project</a></td>
-                                                <td><i class="fa fa-file-video-o" style="font-size:15px"></i></td>
                                                 <td><span class="pie">456</span></td>
                                                 <td>Jul 22, 2013</td>
                                             </tr>
