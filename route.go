@@ -31,6 +31,12 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		switch action {
 		case "":
 			method = controller.MethodByName(strings.Title("index") + "Action")
+		case "indexAction":
+			method = controller.MethodByName(strings.Title("index") + "Action")
+		case "taskAction":
+			method = controller.MethodByName(strings.Title("task") + "Action")
+		case "settingAction":
+			method = controller.MethodByName(strings.Title("setting") + "Action")
 		default:
 			NotFoundAction(w)
 		}

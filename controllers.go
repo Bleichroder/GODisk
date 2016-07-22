@@ -21,6 +21,24 @@ func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request)
 	log.Println("Index HTML transmition complete!")
 }
 
+func (this *indexController) TaskAction(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("static/html/task.html")
+	if err != nil {
+		log.Println(err)
+	}
+	t.Execute(w, nil)
+	log.Println("Task HTML transmition complete!")
+}
+
+func (this *indexController) SettingAction(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("static/html/setting.html")
+	if err != nil {
+		log.Println(err)
+	}
+	t.Execute(w, nil)
+	log.Println("Setting HTML transmition complete!")
+}
+
 /**********************************************************************************
  Register path controller
 **********************************************************************************/

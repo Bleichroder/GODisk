@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GODisk | Index</title>
+
+    <base href="http://192.168.3.116:8080/" />
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="css/plugins/toastr/toastr.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+
+    <!-- Toastr -->
+    <script src="js/plugins/toastr/toastr.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('Responsive Admin Theme', 'Welcome to GODisk');
+            }, 1300);    
+
+            $('#checkAll').prop('checked', false);
+
+            $("#checkAll").click(function() { 
+                var checkStatus = $('#checkAll').prop('checked');       
+                $('input[name=subBox]').prop("checked", checkStatus);        
+            });  
+
+            $("input[name=subBox]").click(function(){
+                $("#checkAll").prop("checked",$("input[name=subBox]").length == $("input[name=subBox]:checked").length ? true : false);
+            }); 
+        });       
+    </script>
+
+    <style type="text/css">
+        [role=filetype] {
+            align-content: center;
+            font-size: 15px;
+        }
+
+        td > i {
+            margin-left: 8px;
+        }
+
+        td > progress {
+            width: 80%;
+            height: 15px;
+        }
+
+        td > a > i {
+            font-size: 20px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="img/gopher.jpeg" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">Jason C.Liu<b class="caret"></b></strong>
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="profile.html">Profile</a></li>
+                                <li><a href="contacts.html">Contacts</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login/index">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">GODisk</div>
+                    </li>
+                    <li>
+                        <a href="index/index">
+                            <i class="fa fa-file"></i>
+                            <span class="nav-label">Files</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="index/task">
+                            <i class="fa fa-tasks"></i>
+                            <span class="nav-label">Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index/setting">
+                            <i class="fa fa-gears"></i>
+                            <span class="nav-label">Setting</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index/">
+                            <i class="fa fa-th-large"></i>
+                            <span class="nav-label">Dashboards</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="active"><a href="index.html">Dashboard v.1</a></li>
+                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                            <li><a href="dashboard_3.html">Dashboard v.3</a></li>
+                            <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                        </ul>
+                    </li>                    
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " >
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Task List</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li>
+                                            <a>Config option 1</a>
+                                        </li>
+                                        <li>
+                                            <a>Config option 2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:40px">
+                                                    <input type="checkbox" class="i-checks" id="checkAll" >
+                                                </th>
+                                                <th style="width:70px">Type</th>
+                                                <th>File Name</th>
+                                                <th style="width:20%">Progress</th>
+                                                <th style="width:10%">Speed </th>
+                                                <th style="width:10%">Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
+                                                <td role="filetype"><i class="fa fa-folder"></i></td>
+                                                <td><a>Project</a></td>
+                                                <td><progress value="10" max="100"></progress></td>
+                                                <td><span class="pie">1024</span></td>
+                                                <td>
+                                                    <a><i class="fa fa-pause"></i></a>
+                                                    <a><i class="fa fa-play"></i></a>
+                                                    <a><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
+                                                <td role="filetype"><i class="fa fa-folder"></i></td>
+                                                <td><a>Project</a></td>
+                                                <td><progress value="50" max="100"></progress></td>
+                                                <td><span class="pie">1024</span></td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            
+            <div class="footer" >
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Jason C.Liu &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</body>
+</html>
