@@ -146,6 +146,8 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 	switch ret {
 	case 0:
 		loginResult = &Result{0, "Login success."}
+		cookie := http.Cookie{Name: "username", Value: userInfo.name, Path: "/"}
+		http.SetCookie(w, &cookie)
 	case 1:
 		loginResult = &Result{1, "Username not exist."}
 	case 2:
@@ -161,7 +163,7 @@ func (this *loginController) SubmitAction(w http.ResponseWriter, r *http.Request
 		log.Println(err)
 		return
 	} else {
-		log.Println("Response message of login handler hava sent.")
+		log.Println("Response message of login handler have sent.")
 		w.Write(b)
 	}
 }

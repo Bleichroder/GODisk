@@ -12,7 +12,11 @@ import (
 **********************************************************************************/
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 
-	log.Println()
+	cookie, err := r.Cookie("username")
+	if err != nil {
+		log.Println(err)
+	}
+
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -21,7 +25,11 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		action = strings.Title(parts[1]) + "Action"
 	}
 
+	log.Println()
 	log.Println("Index request: " + action)
+	log.Println("Cookie: " + cookie.String())
+
+	http.SetCookie(w, cookie)
 
 	index := &indexController{}
 	controller := reflect.ValueOf(index)
@@ -52,7 +60,6 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 
-	log.Println()
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -61,6 +68,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		action = strings.Title(parts[1]) + "Action"
 	}
 
+	log.Println()
 	log.Println("Registry request: " + action)
 
 	register := &registerController{}
@@ -89,7 +97,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func LogInHandler(w http.ResponseWriter, r *http.Request) {
 
-	log.Println()
 	pathInfo := strings.Trim(r.URL.Path, "/")
 	parts := strings.Split(pathInfo, "/")
 
@@ -98,6 +105,7 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 		action = strings.Title(parts[1]) + "Action"
 	}
 
+	log.Println()
 	log.Println("Login request: " + action)
 
 	login := &loginController{}
@@ -126,6 +134,7 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 
+	log.Println()
 	log.Println("Not Found request: ")
 	if r.URL.Path == "/" {
 		http.Redirect(w, r, "/login/index", http.StatusFound)

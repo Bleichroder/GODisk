@@ -26,6 +26,7 @@
 
         $(document).ready(function(){
 
+            // Dialog initialization
             $("div[role=reminder]").dialog({
                 resizable: false,
                 modal: true,
@@ -37,6 +38,7 @@
                 }
             });
 
+            // Form submit action
             $("form[class=m-t-register]").submit(function(event) {
                 /* Act on the event */
                 event.preventDefault();

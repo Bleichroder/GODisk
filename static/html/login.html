@@ -20,12 +20,14 @@
 	<script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="js/jquery.cookie.js"></script>
+    
     <!-- Custom -->
     <script type="text/javascript">
 
         $(document).ready(function() {
 
+            // Dialog initialization
             $("div[role=reminder]").dialog({
                 resizable: false,
                 modal: true,
@@ -37,6 +39,7 @@
                 }
             });
 
+            // Form submit action
             $("form[class=m-t-login]").submit(function(event) {
                 /* Act on the event */
                 event.preventDefault();
@@ -46,13 +49,16 @@
                 console.log("Ajax: Sending login request!");
                 $.post(action, $(target).serialize(), function(data) {
                     /*optional stuff to do after success */
-                    //console.log(data.Log);
+                    console.log(data.Log);
                     // Succeed
                     if (data.Ret == "0"){                        
                         $("#login-succeed").dialog("open");
+                        var cookies = $.cookie('username');
+                        console.log('Cookie: ' + cookies);
+                        $.cookie('username',cookies,'/index/index');
                         setTimeout(function(){
                             location.href = $(target).attr("form-redirect");
-                        }, 3000); 
+                        }, 3000);
                     }
                     // Wrong username
                     else if (data.Ret == "1"){
