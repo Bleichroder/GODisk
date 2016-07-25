@@ -10,16 +10,16 @@
 	
 	<base href="http://192.168.3.116:8080/" />
 
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/jquery-ui-1.11.4.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- Mainly scripts -->
-	<script src="js/jquery-2.2.4.js"></script>
-    <script src="js/jquery-ui-1.11.4.js"></script>
-    <script src="js/bootstrap.js"></script>
+	<script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom -->
     <script type="text/javascript">
@@ -43,15 +43,16 @@
                 var target = event.target;
                 var action = $(target).attr("action");
 
+                console.log("Ajax: Sending login request!");
                 $.post(action, $(target).serialize(), function(data) {
                     /*optional stuff to do after success */
-                    console.log(data.Log);
+                    //console.log(data.Log);
                     // Succeed
                     if (data.Ret == "0"){                        
                         $("#login-succeed").dialog("open");
                         setTimeout(function(){
                             location.href = $(target).attr("form-redirect");
-                        }, 3000)  
+                        }, 3000); 
                     }
                     // Wrong username
                     else if (data.Ret == "1"){
@@ -66,6 +67,7 @@
                         $("#inner-error").dialog("open");
                     }
                 }, "json");
+                console.log("Ajax: Login request responded!");
             });
         });
 
