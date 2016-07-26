@@ -4,11 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
-
-var GODiskDB *sql.DB
 
 // Database initialization. Creating an connection pool.
 func dbInit() (dbNew *sql.DB, err error) {
@@ -46,11 +45,6 @@ func DBPing(db *sql.DB) {
 /**********************************************************************************
 	Login Services
 **********************************************************************************/
-
-type userLoginInfo struct {
-	name     string
-	password string
-}
 
 func loginService(db *sql.DB, user *userLoginInfo) int {
 
@@ -102,13 +96,6 @@ func loginService(db *sql.DB, user *userLoginInfo) int {
 /**********************************************************************************
 	Register Services
 **********************************************************************************/
-
-type userRegistryInfo struct {
-	name     string
-	password string
-	confirm  string
-	authcode string
-}
 
 func registerService(db *sql.DB, user *userRegistryInfo) int {
 
@@ -238,7 +225,32 @@ func userTableCreate(db *sql.DB, username string) error {
 		return err
 	}
 
+	rootfile := &Inode{"/.", "Folder", 0, "123", "1", time.Now()}
+	inodeInsertion(db, table_name, rootfile)
+
 	log.Println("Table {" + table_name + "} has successfully created.")
+	return nil
+}
+
+// Insert file information into table user_username
+func inodeInsertion(db *sql.DB, table string, file *Inode) error {
+
+	log.Println("File infomation of {" + file.FileName + "} inserting...")
+	insertQuery, err := db.Prepare("INSERT INTO " + table +
+		" (file_name, type, size, md5, storage_id, modification_time)" +
+		" VALUE(?, ?, ?, ?, ?, now())")
+
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	defer insertQuery.Close()
+	_, err = insertQuery.Exec(file.FileName, file.FileType, file.FileSize, file.MD5, file.StorageID)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	log.Println("File infomation of {" + file.FileName + "} insertion complete!")
 	return nil
 }
 

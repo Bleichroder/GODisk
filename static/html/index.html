@@ -44,9 +44,9 @@
                     timeOut: 4000
                 };
                 toastr.success('Responsive Admin Theme', 'Welcome to GODisk');
-            }, 1300);   
+            }, 1300);  
 
-            console.log($.cookie('username'));
+            $('strong[id=username]').text($.cookie('username'));
 
             $('#checkAll').prop('checked', false);
 
@@ -87,7 +87,8 @@
                             <a data-toggle="dropdown" class="dropdown-toggle">
                                 <span class="clear">
                                     <span class="block m-t-xs">
-                                        <strong class="font-bold">Jason C.Liu<b class="caret"></b></strong>
+                                        <strong id="username" class="font-bold"></strong>
+                                        <b class="caret"></b>
                                     </span>
                                 </span>
                             </a>

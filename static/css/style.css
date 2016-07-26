@@ -2860,7 +2860,7 @@ a.forum-item-title:hover {
 .tabs-container .tabs-left > .nav-tabs .active > a:hover,
 .tabs-container .tabs-left > .nav-tabs .active > a:focus {
   border-color: #e7eaec transparent #e7eaec #e7eaec;
-  *border-right-color: #ffffff;
+  border-right-color: #ffffff;
 }
 .tabs-container .tabs-right > .nav-tabs {
   float: right;
@@ -2876,7 +2876,7 @@ a.forum-item-title:hover {
 .tabs-container .tabs-right > .nav-tabs .active > a:hover,
 .tabs-container .tabs-right > .nav-tabs .active > a:focus {
   border-color: #e7eaec #e7eaec #e7eaec transparent;
-  *border-left-color: #ffffff;
+  border-left-color: #ffffff;
   z-index: 1;
 }
 /* jsvectormap */

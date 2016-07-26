@@ -21,14 +21,24 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(pathInfo, "/")
 
 	var action = ""
-	if len(parts) > 1 {
+	switch len(parts) {
+	case 1:
+		action = "IndexAction"
+	case 2:
 		action = strings.Title(parts[1]) + "Action"
+	case 3:
+		action = strings.Title(parts[1]) + strings.Title(parts[2]) + "Action"
+	default:
+		action = ""
 	}
 
 	log.Println()
 	log.Println("Index request: " + action)
 	log.Println("Cookie: " + cookie.String())
 
+	if cookie == nil {
+		http.Redirect(w, r, "/login/index", http.StatusFound)
+	}
 	http.SetCookie(w, cookie)
 
 	index := &indexController{}
@@ -36,16 +46,9 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	method := controller.MethodByName(action)
 
 	if !method.IsValid() {
-		switch action {
-		case "":
-			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "indexAction":
-			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "taskAction":
-			method = controller.MethodByName(strings.Title("task") + "Action")
-		case "settingAction":
-			method = controller.MethodByName(strings.Title("setting") + "Action")
-		default:
+		if action != "" {
+			method = controller.MethodByName(action)
+		} else {
 			NotFoundAction(w)
 		}
 	}
@@ -64,8 +67,13 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(pathInfo, "/")
 
 	var action = ""
-	if len(parts) > 1 {
+	switch len(parts) {
+	case 1:
+		action = "IndexAction"
+	case 2:
 		action = strings.Title(parts[1]) + "Action"
+	default:
+		action = ""
 	}
 
 	log.Println()
@@ -76,14 +84,9 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	method := controller.MethodByName(action)
 
 	if !method.IsValid() {
-		switch action {
-		case "":
-			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "indexAction":
-			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "submitAction":
-			method = controller.MethodByName(strings.Title("submit") + "Action")
-		default:
+		if action != "" {
+			method = controller.MethodByName(action)
+		} else {
 			NotFoundAction(w)
 		}
 	}
@@ -101,8 +104,13 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(pathInfo, "/")
 
 	var action = ""
-	if len(parts) > 1 {
+	switch len(parts) {
+	case 1:
+		action = "IndexAction"
+	case 2:
 		action = strings.Title(parts[1]) + "Action"
+	default:
+		action = ""
 	}
 
 	log.Println()
@@ -113,14 +121,9 @@ func LogInHandler(w http.ResponseWriter, r *http.Request) {
 	method := controller.MethodByName(action)
 
 	if !method.IsValid() {
-		switch action {
-		case "":
-			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "indexAction":
-			method = controller.MethodByName(strings.Title("index") + "Action")
-		case "submitAction":
-			method = controller.MethodByName(strings.Title("submit") + "Action")
-		default:
+		if action != "" {
+			method = controller.MethodByName(action)
+		} else {
 			NotFoundAction(w)
 		}
 	}

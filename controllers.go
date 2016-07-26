@@ -10,7 +10,6 @@ import (
 /**********************************************************************************
  Index path controller
 **********************************************************************************/
-type indexController struct{}
 
 func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("static/html/index.html")
@@ -42,9 +41,6 @@ func (this *indexController) SettingAction(w http.ResponseWriter, r *http.Reques
 /**********************************************************************************
  Register path controller
 **********************************************************************************/
-
-type registerController struct {
-}
 
 func (this *registerController) IndexAction(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("static/html/register.html")
@@ -107,8 +103,6 @@ func (this *registerController) SubmitAction(w http.ResponseWriter, r *http.Requ
 /**********************************************************************************
  Login path controller
 **********************************************************************************/
-type loginController struct {
-}
 
 func (this *loginController) IndexAction(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("static/html/login.html")
