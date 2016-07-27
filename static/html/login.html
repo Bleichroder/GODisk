@@ -55,7 +55,7 @@
                         $("#login-succeed").dialog("open");
                         var cookies = $.cookie('username');
                         console.log('Cookie: ' + cookies);
-                        $.cookie('username',cookies,'/index/index');
+                        $.cookie('username',cookies,'/index');
                         setTimeout(function(){
                             location.href = $(target).attr("form-redirect");
                         }, 3000);

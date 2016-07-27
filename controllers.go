@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 /**********************************************************************************
@@ -18,6 +19,39 @@ func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request)
 	}
 	t.Execute(w, nil)
 	log.Println("Index HTML transmition complete!")
+}
+
+func (this *indexController) IndexGetinodeAction(w http.ResponseWriter, r *http.Request) {
+
+	inodeList := template.Must(template.New("inodelist").Parse(InodeTemplate))
+
+	// Open Database
+	GODiskDB, err := dbInit()
+	if err != nil {
+		log.Println(err)
+	}
+	defer GODiskDB.Close()
+
+	// Query all file information
+	ret := inodeQuery(GODiskDB, "user_jason", "/")
+	for _, inode := range ret {
+		var temp InodeToTemplate
+		temp.FileName = inode.FileName
+		temp.FileSize = strconv.Itoa(inode.FileSize)
+		switch inode.FileType {
+		case "folder":
+			temp.TypeClass = "folder"
+		case "pdf":
+			temp.TypeClass = "file-pdf-o"
+		case "text":
+			temp.TypeClass = "file-text-o"
+		}
+		temp.ModTime = inode.ModTime
+		err = inodeList.Execute(w, temp)
+		if err != nil {
+			log.Println(err)
+		}
+	}
 }
 
 func (this *indexController) TaskAction(w http.ResponseWriter, r *http.Request) {
@@ -36,6 +70,15 @@ func (this *indexController) SettingAction(w http.ResponseWriter, r *http.Reques
 	}
 	t.Execute(w, nil)
 	log.Println("Setting HTML transmition complete!")
+}
+
+func (this *indexController) SkinconfigAction(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("static/html/skin-config.html")
+	if err != nil {
+		log.Println(err)
+	}
+	t.Execute(w, nil)
+	log.Println("Skinconfig HTML transmition complete!")
 }
 
 /**********************************************************************************

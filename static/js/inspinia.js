@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     // Append config box / Only for demo purpose
     // Uncomment on server mode to enable XHR calls
-    $.get("skin-config.html", function (data) {
+    $.get("index/skinconfig", function (data) {
         if (!$('body').hasClass('no-skin-config'))
             $('body').append(data);
     });

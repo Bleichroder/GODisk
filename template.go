@@ -4,7 +4,7 @@ const InodeTemplate = `
 <tr>
     <td><input type="checkbox" class="i-checks" name="subBox"></td>
     <td role="filetype"><i class="fa fa-{{.TypeClass}}"></i></td>
-    <td><a>{{.Filename}}</a></td>
+    <td><a>{{.FileName}}</a></td>
     <td><span class="pie">{{.FileSize}}</span></td>
     <td>{{.ModTime}}</td>
 </tr>

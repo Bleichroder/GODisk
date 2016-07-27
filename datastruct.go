@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"time"
 )
 
 var GODiskDB *sql.DB
@@ -24,12 +23,13 @@ type userRegistryInfo struct {
 }
 
 type Inode struct {
+	Path      string
 	FileName  string
 	FileType  string
-	FileSize  uint64
+	FileSize  int
+	ModTime   string
 	MD5       string
 	StorageID string
-	ModTime   time.Time
 }
 
 type InodeToTemplate struct {

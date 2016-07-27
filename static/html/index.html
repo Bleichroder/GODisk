@@ -20,7 +20,7 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -36,6 +36,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $.get('index/index/getinode', function(data) {
+                /*optional stuff to do after success */
+                console.log(data);
+                $('#allFiles').append(data)
+            }, "html");
+
             setTimeout(function() {
                 toastr.options = {
                     closeButton: true,
@@ -74,7 +81,7 @@
 
 </head>
 
-<body>
+<body class="skin-1">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -276,36 +283,7 @@
                                                 <th style="width:15%">Modification Date</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
-                                                <td role="filetype"><i class="fa fa-folder"></i></td>
-                                                <td><a>Project</a></td>
-                                                <td><span class="pie">1024</span></td>
-                                                <td>2016-07-21 14:00</td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
-                                                <td role="filetype"><i class="fa fa-file-picture-o"></i></td>
-                                                <td><a>Project</a></td>
-                                                <td><span class="pie">2222</span></td>
-                                                <td>Jul 16, 2013</td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
-                                                <td role="filetype"><i class="fa fa-file-pdf-o"></i></td>
-                                                <td><a>Project</a></td>
-                                                <td><span class="pie">123</span></td>
-                                                <td>Jul 18, 2013</td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox" class="i-checks" name="subBox"></td>
-                                                <td role="filetype"><i class="fa fa-file-video-o"></i></td>
-                                                <td><a>Project</a></td>
-                                                <td><span class="pie">456</span></td>
-                                                <td>Jul 22, 2013</td>
-                                            </tr>
-                                        </tbody>
+                                        <tbody id="allFiles"></tbody>
                                     </table>
                                 </div>
                             </div>
