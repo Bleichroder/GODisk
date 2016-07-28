@@ -20,6 +20,8 @@
 	<script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Cookie -->
     <script src="js/jquery.cookie.js"></script>
     
     <!-- Custom -->
@@ -62,14 +64,17 @@
                     }
                     // Wrong username
                     else if (data.Ret == "1"){
+                        $("input[type=reset]").trigger("click");
                         $("#un-not-exist").dialog("open");
                     }
                     // Wrong password
                     else if (data.Ret == "2"){
+                        $("input[type=reset]").trigger("click");
                         $("#pw-not-match").dialog("open");
                     }
                     // Inner error
                     else if (data.Ret == "3"){
+                        $("input[type=reset]").trigger("click");
                         $("#inner-error").dialog("open");
                     }
                 }, "json");
@@ -92,21 +97,21 @@
             <h3>Welcome to GODisk</h3>
             <p>Please enter your username and password to login.</p>
             
-            <form class="m-t-login" role="form" action="login/submit" form-redirect="index">
-			
+            <form class="m-t-login" role="form" action="login/submit" form-redirect="index">			
                 <div class="form-group">
-                    <input type="text" class="form-control" name="login_username" placeholder="Username" required="">
+                    <input type="text" class="form-control" name="login_username" placeholder="Username" required="" autocomplete="off" />
                 </div>
 				
                 <div class="form-group">
-                    <input type="password" class="form-control" name="login_password" placeholder="Password" required="">
+                    <input type="password" class="form-control" name="login_password" placeholder="Password" required="" autocomplete="off" />
                 </div>
 				
                 <button id="login-submit" type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
                 <p class="text-muted text-center"><small>Do not have an account?</small></p>
                 <a class="btn btn-sm btn-white btn-block" href="register/index">Create an account</a>
-          
+
+                <input type="reset" style="display:none;" />          
             </form>
             
             <p class="m-t"> <small>Base on Bootstrap 3 &copy; 2016</small> </p>

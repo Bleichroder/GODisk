@@ -39,6 +39,15 @@ type InodeToTemplate struct {
 	ModTime   string
 }
 
+type PathMiddle struct {
+	AbsolutePath string
+	RelativePath string
+}
+
+type PathCurrent struct {
+	Path string
+}
+
 type TaskToTemplate struct {
 	TypeClass string
 	FileName  string

@@ -238,7 +238,7 @@ func inodeQuery(db *sql.DB, table string, path string) []Inode {
 		return nil
 	}
 	column, err := queryRows.Columns()
-	log.Println(column)
+	log.Println("File information column: ", column)
 	if err != nil {
 		log.Println(err)
 		return nil
@@ -284,10 +284,56 @@ func inodeQuery(db *sql.DB, table string, path string) []Inode {
 }
 
 /**********************************************************************************
+	Get the amount of registered users.
+**********************************************************************************/
+func userAmount(db *sql.DB) int {
+
+	var result int
+	query, err := db.Prepare("SELECT COUNT(*) FROM user_information")
+	if err != nil {
+		log.Println(err)
+		return 0
+	}
+	defer query.Close()
+	err = query.QueryRow().Scan(&result)
+	if err != nil {
+		log.Println(err)
+		return 0
+	}
+	log.Println("The amount of users registered is: ", result)
+	return result
+}
+
+/**********************************************************************************
+	Update the amount of registered users.
+**********************************************************************************/
+func userAmountUpdate(db *sql.DB, disk string, amount int) error {
+
+	query, err := db.Prepare("UPDATE system_status SET users = ? WHERE disk_name = ?")
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	defer query.Close()
+	_, err = query.Exec(amount, disk)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	log.Println("The amount of users registered has been updated.")
+	return nil
+}
+
+/**********************************************************************************
 	Update global system statistical information
 **********************************************************************************/
 func systemStatusUpdate(db *sql.DB) error {
 
+	users := userAmount(db)
+	err := userAmountUpdate(db, "demo", users)
+	if err != nil {
+		return nil
+	}
 	log.Println("Global system information has been updated.")
 	return nil
 }

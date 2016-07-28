@@ -37,11 +37,9 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $.get('index/index/getinode', function(data) {
-                /*optional stuff to do after success */
-                console.log(data);
-                $('#allFiles').append(data)
-            }, "html");
+            $('strong[id=username]').text($.cookie('username'));
+
+            getInode("/");
 
             setTimeout(function() {
                 toastr.options = {
@@ -51,10 +49,8 @@
                     timeOut: 4000
                 };
                 toastr.success('Responsive Admin Theme', 'Welcome to GODisk');
-            }, 1300);  
-
-            $('strong[id=username]').text($.cookie('username'));
-
+            }, 1300);
+       
             $('#checkAll').prop('checked', false);
 
             $("#checkAll").click(function() { 
@@ -65,7 +61,29 @@
             $("input[name=subBox]").click(function(){
                 $("#checkAll").prop("checked",$("input[name=subBox]").length == $("input[name=subBox]:checked").length ? true : false);
             }); 
-        });       
+        }); 
+
+        function getInode(inodePath) {
+            var pathData = {'destPath' : inodePath};
+            $.get('index/index/getinode', pathData, function(data) {
+                /*optional stuff to do after success */
+                $('#allFiles').empty();
+                console.log(data);
+                $('#allFiles').append(data);
+            }, "html");
+        }
+
+        function getPath(elem) {
+            var target = $(elem).attr('name');
+            var pathData = {'destPath' : target};             
+            $.get('index/index/getpath', pathData, function(data) {
+                /*optional stuff to do after success */
+                $('#currentPath').empty();
+                console.log(data);
+                $('#currentPath').append(data);
+            }, "html");
+            //getInode(target);
+        }      
     </script>
 
     <style type="text/css">
@@ -163,15 +181,9 @@
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2>PATH</h2>
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" id="currentPath">
                         <li>
-                            <a href="index/">Home</a>
-                        </li>
-                        <li>
-                            <a>Level 1</a>
-                        </li>
-                        <li class="active">
-                            <strong>Level 2</strong>
+                            <a role="path" name="/hello/123/456/789/" onclick="getPath(this)">Home</a>
                         </li>
                     </ol>
                 </div>
@@ -232,17 +244,6 @@
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
                                     </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li>
-                                            <a>Config option 1</a>
-                                        </li>
-                                        <li>
-                                            <a>Config option 2</a>
-                                        </li>
-                                    </ul>
                                     <a class="close-link">
                                         <i class="fa fa-times"></i>
                                     </a>

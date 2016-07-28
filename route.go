@@ -17,8 +17,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	pathInfo := strings.Trim(r.URL.Path, "/")
-	parts := strings.Split(pathInfo, "/")
+	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 
 	var action = ""
 	switch len(parts) {
@@ -63,8 +62,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 
-	pathInfo := strings.Trim(r.URL.Path, "/")
-	parts := strings.Split(pathInfo, "/")
+	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 
 	var action = ""
 	switch len(parts) {
@@ -100,8 +98,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 **********************************************************************************/
 func LogInHandler(w http.ResponseWriter, r *http.Request) {
 
-	pathInfo := strings.Trim(r.URL.Path, "/")
-	parts := strings.Split(pathInfo, "/")
+	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 
 	var action = ""
 	switch len(parts) {

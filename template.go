@@ -9,6 +9,19 @@ const InodeTemplate = `
     <td>{{.ModTime}}</td>
 </tr>
 `
+
+const PathTemplateMiddle = `
+<li>
+	<a role="path" name="{{.AbsolutePath}}" onclick="getPath(this)">{{.RelativePath}}</a>
+</li>
+`
+
+const PathTemplateCurrent = `
+<li class="active">
+	<strong>{{.Path}}</strong>
+</li>
+`
+
 const TaskTemplate = `
 <tr>
     <td><input type="checkbox" class="i-checks" name="subBox"></td>
