@@ -134,15 +134,6 @@ func (this *indexController) SettingAction(w http.ResponseWriter, r *http.Reques
 	log.Println("Setting HTML transmition complete!")
 }
 
-func (this *indexController) SkinconfigAction(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("static/html/skin-config.html")
-	if err != nil {
-		log.Println(err)
-	}
-	t.Execute(w, nil)
-	log.Println("Skinconfig HTML transmition complete!")
-}
-
 /**********************************************************************************
  Register path controller
 **********************************************************************************/

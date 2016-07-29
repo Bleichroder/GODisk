@@ -30,9 +30,9 @@ const TaskTemplate = `
     <td><progress value="{{.Progress}}" max="100"></progress></td>
     <td><span class="pie">{{.TranSpeed}}</span></td>
     <td>
-        <a><i class="fa fa-pause"></i></a>
-        <a><i class="fa fa-play"></i></a>
-        <a><i class="fa fa-trash"></i></a>
+        <a style="margin-left:7px"><i class="fa fa-pause"></i></a>
+        <a style="margin-left:7px"><i class="fa fa-play"></i></a>
+        <a style="margin-left:7px"><i class="fa fa-trash"></i></a>
     </td>
 </tr>
 `

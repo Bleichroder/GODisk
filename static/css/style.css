@@ -6940,7 +6940,7 @@ body.rtls.top-navigation .footer.fixed {
   overflow: hidden;
 }
 .theme-config-box {
-  margin-right: -220px;
+  margin-right: -800px;
   position: relative;
   z-index: 2000;
   transition-duration: 0.8s;
@@ -6961,7 +6961,7 @@ body.rtls.top-navigation .footer.fixed {
   cursor: pointer;
 }
 .skin-setttings {
-  width: 220px;
+  width: 800px;
   margin-left: 40px;
   background: #f3f3f4;
 }
