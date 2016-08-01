@@ -22,6 +22,24 @@ func (this *indexController) IndexAction(w http.ResponseWriter, r *http.Request)
 	log.Println("Index HTML transmition complete!")
 }
 
+func (this *indexController) TaskAction(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("static/html/task.html")
+	if err != nil {
+		log.Println(err)
+	}
+	t.Execute(w, nil)
+	log.Println("Task HTML transmition complete!")
+}
+
+func (this *indexController) SettingAction(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("static/html/setting.html")
+	if err != nil {
+		log.Println(err)
+	}
+	t.Execute(w, nil)
+	log.Println("Setting HTML transmition complete!")
+}
+
 func (this *indexController) IndexGetpathAction(w http.ResponseWriter, r *http.Request) {
 
 	// Split Path
@@ -116,22 +134,8 @@ func (this *indexController) IndexGetinodeAction(w http.ResponseWriter, r *http.
 	log.Println("File information request all responded.")
 }
 
-func (this *indexController) TaskAction(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("static/html/task.html")
-	if err != nil {
-		log.Println(err)
-	}
-	t.Execute(w, nil)
-	log.Println("Task HTML transmition complete!")
-}
+func (this *indexController) IndexUploadAction(w http.ResponseWriter, r *http.Request) {
 
-func (this *indexController) SettingAction(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("static/html/setting.html")
-	if err != nil {
-		log.Println(err)
-	}
-	t.Execute(w, nil)
-	log.Println("Setting HTML transmition complete!")
 }
 
 /**********************************************************************************

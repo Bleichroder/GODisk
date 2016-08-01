@@ -34,6 +34,9 @@
     <!-- Toastr -->
     <script src="js/plugins/toastr/toastr.js"></script>
 
+    <!-- Fine Uploader -->
+    <script src="js/fine-uploader.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -61,6 +64,22 @@
             $("input[name=subBox]").click(function(){
                 $("#checkAll").prop("checked",$("input[name=subBox]").length == $("input[name=subBox]:checked").length ? true : false);
             }); 
+
+            var uploader = new qq.FineUploaderBasic({
+                debug: true,
+                element: document.getElementById('fine-uploader'),
+                button: document.getElementById('upload-btn'),
+                request: {
+                    endpoint: '/index/index/upload'
+                },
+                deleteFile: {
+                    enabled: true,
+                    endpoint: '/index/index/upload'
+                },
+                retry: {
+                    enableAuto: false
+                }
+            }); 
         }); 
 
         function getInode(inodePath) {
@@ -83,7 +102,7 @@
                 $('#currentPath').append(data);
             }, "html");
             //getInode(target);
-        }      
+        }        
     </script>
 
     <style type="text/css">
@@ -195,10 +214,12 @@
                             </div>
                         </div>
                         <div class="ibox-content" style="padding-bottom:15px">
-                            <button class="btn btn-success " type="button">
+                            <div id="fine-uploader">
+                            </div>
+                            <a class="btn btn-success" id="upload-btn">
                                 <i class="fa fa-cloud-upload"></i>
                                 <span class="bold">Upload</span>
-                            </button>
+                            </a>                                              
                             <button class="btn btn-primary " type="button">
                                 <i class="fa fa-cloud-download"></i>
                                 <span class="bold">Download</span> 
@@ -297,6 +318,6 @@
             </div>
         </div>
     </div>
-  
+
 </body>
 </html>
