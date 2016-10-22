@@ -12,15 +12,15 @@ const PCWebDir = "static"
 func init() {
 
 	// Open/Ping/Close Database Server Connection
-	GODiskDB, err := dbInit()
-	if err != nil {
-		log.Println(err)
-	}
-	GODiskDB.SetMaxOpenConns(2000)
-	GODiskDB.SetMaxIdleConns(1000)
+	// GODiskDB, err := dbInit()
+	// if err != nil {
+	// 	log.Println(err)
+	// }
+	// GODiskDB.SetMaxOpenConns(2000)
+	// GODiskDB.SetMaxIdleConns(1000)
 
-	DBPing(GODiskDB)
-	GODiskDB.Close()
+	// DBPing(GODiskDB)
+	// GODiskDB.Close()
 }
 
 func main() {

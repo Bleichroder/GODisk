@@ -15,7 +15,7 @@ import (
 **********************************************************************************/
 func dbInit() (dbNew *sql.DB, err error) {
 
-	dbNew, err = sql.Open("mysql", "jason:buck119br@/godisk")
+	dbNew, err = sql.Open("mysql", "root:/lanxiniu")
 
 	if err != nil {
 		log.Println(err)
